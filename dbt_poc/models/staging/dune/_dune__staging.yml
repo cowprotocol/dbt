@@ -1,0 +1,6 @@
+version: 2
+
+sources:
+  - name: backend_test
+    tables:
+      - name: backend_test_table_1
