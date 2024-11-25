@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: backend_data
+    schema: temp_backend_db_dump
+    tables:
+      - name: competition_auctions
+      - name: proposed_solutions
+        description: table computed by the autopilot listing all the proposed solution of the solvers.
+        data_tests:
+          - dbt_expectations.expect_compound_columns_to_be_unique:
+              column_list: ["auction_id", "uid"]
+        columns:
+          - name: auction_id
+            data_tests:
+              - not_null
+          - name: uid
+            description: the id of the proposed solution
+            data_tests:
+              - not_null
+          - name: solver
+            data_tests:
+              - not_null
+          - name: score
+            data_tests:
+              - not_null
+          - name: is_winner                                                
+      - name: settlements
+        columns:
+          - name: auction_id
+            data_tests:
+              - not_null
+          - name: tx_hash
+            data_tests:
+              - not_null
+          - name: solver
+            data_tests:
+              - not_null
+          - name: block_number
+            data_tests:
+              - not_null                                        

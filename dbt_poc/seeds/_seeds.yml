@@ -1,0 +1,5 @@
+version: 2
+
+seeds:
+  - name: full_bonding_pools
+  

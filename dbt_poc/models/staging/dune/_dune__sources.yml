@@ -1,7 +1,0 @@
-version: 2
-
-sources:
-  - name: dune_db
-    tables:
-      - name: dune_table_1
-      
