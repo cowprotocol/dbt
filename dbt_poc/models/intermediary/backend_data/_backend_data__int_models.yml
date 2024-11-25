@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: int_backend_data__settlements_in_time
+    description: >
+      Model with only the auctinos where we have a setllement 
+      and that provides if the settlement was on time.
+  - name: int_backend_data__score_calculations
+    description: > 
+      Model that simply adds two new columns to the proposed solutions:
+      One with the max score for that auction, 
+      and one with the second highest score for the aution (or 0 if it does not exist).
+      All the proposed solutions are still present.
+  - name: int_backend_data__reward_calculation
+    description: Model with the logic of the final scoring.
+

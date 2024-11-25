@@ -1,27 +1,11 @@
-my_dbt_project:
+dbt_poc:
   outputs:
-    dune_source:
+    analytics_postgres:
       type: postgres
-      host: localhost
+      host: cow-analytics-db.cgabamo3x0wl.eu-central-1.rds.amazonaws.com
       port: 5432
-      user: your_username
-      password: your_password
-      dbname: dune_db
-      schema: public
-    backend_test_source:
-      type: postgres
-      host: localhost
-      port: 5432
-      user: your_username
-      password: your_password
-      dbname: backend_test
-      schema: public
-    target:
-      type: postgres
-      host: localhost
-      port: 5432
-      user: your_username
-      password: your_password
-      dbname: data_models
-      schema: public
-  target: dune_source  # the default target; this can be switched dynamically.
+      user: solver_slippage_readonly
+      password: "{{ env_var('ANALYTICS_PASSWORD') }}"
+      dbname: solver_slippage
+      schema: aurelie
+  target: analytics_postgres  
