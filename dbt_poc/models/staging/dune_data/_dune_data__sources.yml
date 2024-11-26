@@ -9,13 +9,8 @@ sources:
       - name: VouchRegister_evt_Vouch
         description: >
           This come frome the dune table cow_protocol_ethereum.VouchRegister_evt_Vouch
-          !! at the moment the data in this table does not seem fresh. 
-          We need to investigate how often this data arrives in the table, 
-          and we might need to adapt the downstream models and run dbt only when this data arrives... 
+          We only vouch if a new solver joins (say, every few weeks) or when solvers change their reward target address (happens less often).
+          This table is not uploaded by us. Instead, it is indexed directly from the blockchain by Dune.
       - name: VouchRegister_evt_InvalidateVouch
         description: >
           This come frome the dune table cow_protocol_ethereum.VouchRegister_evt_InvalidateVouch
-          !! at the moment the data in this table does not seem fresh. 
-          We need to investigate how often this data arrives in the table, 
-          and we might need to adapt the downstream models and run dbt only when this data arrives... 
-          

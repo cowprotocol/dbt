@@ -1,0 +1,4 @@
+version: 2
+models:
+  - name: stg_dune_data_vouch
+  - name: stg_dune_data_invalidate_vouch
