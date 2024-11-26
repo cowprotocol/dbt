@@ -3,6 +3,13 @@ version: 2
 sources:
   - name: backend_data
     schema: temp_backend_db_dump
+    description: >
+      this is a temporary source that needs to be replaced by the actual data dump we will do:
+      We will periodically upload new data from the backend db to the analytics db. 
+      When we do this, we need to make sure that there is a column (named updated_at for example)
+      which indicates when the row was uploaded to our analytics database.
+      Then, we can use this column to incrementaly load the data inside of the staging model
+      and make follow up models incremental too if we want. 
     tables:
       - name: competition_auctions
       - name: proposed_solutions

@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: dune_data
+    schema: aurelie
+    description: >
+      this is a temporary source that needs to be replaced by the actual dune extract and load job we will be doing. 
+    tables:
+      - name: VouchRegister_evt_Vouch
+        description: >
+          This come frome the dune table cow_protocol_ethereum.VouchRegister_evt_Vouch
+          !! at the moment the data in this table does not seem fresh. 
+          We need to investigate how often this data arrives in the table, 
+          and we might need to adapt the downstream models and run dbt only when this data arrives... 
+      - name: VouchRegister_evt_InvalidateVouch
+        description: >
+          This come frome the dune table cow_protocol_ethereum.VouchRegister_evt_InvalidateVouch
+          !! at the moment the data in this table does not seem fresh. 
+          We need to investigate how often this data arrives in the table, 
+          and we might need to adapt the downstream models and run dbt only when this data arrives... 
+          
