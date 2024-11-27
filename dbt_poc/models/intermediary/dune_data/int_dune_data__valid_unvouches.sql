@@ -3,17 +3,17 @@ with bonding_pool as (
     from {{ref('full_bonding_pools')}}
 ),
 
-vouches as (
+invalidate_vouches as (
     select *
-    from {{ref('stg_dune_data__vouch')}}
+    from {{ref('stg_dune_data__invalidate_vouch')}}
 ),
 
-valid_vouches as (
+valid_unvouches as (
     select 
         * ,
-        true as is_vouched
+        false as is_vouched
     from 
-        vouches v
+        invalidate_vouches v
     inner join 
         bonding_pool b
     on 
@@ -23,4 +23,4 @@ valid_vouches as (
 
 )
 
-select * from valid_vouches
+select * from valid_unvouches

@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: int_dune_data__valid_vouches
+    description: >
+      List of all the solvers and their reward target address with a valid vouch. 
+      This means that one of bonding pools we trust has vouched for the solver.
+      ! This table can not be used to send rewards as we do not yet know if the solver has been un-vouched after:
+      an entry in this table only means that a solver has been vouhed for at one point in time. 
+      Needs to be compared with the int_dune_data__valid_unvouches table to identify the dinal list of vouched solvers.
+    columns:
+      - name: reward_target
+        data_tests:
+          - not_null
+      - name: is_vouched
+        description: >
+          New column added in this model which is always set to true here.
+          We will use it later when joining with the unvouched table to keep track of which solver was vouched for or unvouched for.
+  - name: int_dune_data__valid_unvouches
+    description: >
+     List of all the solver and their reward target address with a valid unvouch.
+     This means that one of the bonding pools we trust has unvouched these solvers.
+    columns:
+      - name: is_vouched
+        description: >
+          New column added in this model which is always set to false here.
+          We will use it later when joining with the vouched table to keep track of which solver was vouched for or unvouched for.
+  - name: int_dune_data__invalid_vouched
+    description: >
+      All the vouches found in the dune source table for vouches which where not validated by one of the bonding pools we trust.
+      Hopefully, this table is as empty as possible.
+      Todo later: create a custom dbt test and tracking table to warn whenever a new entry appears in this table. 
+  - name: int_dune_data__actual_valid_vouches
+    description: >
+     List of all the solver and their reward target address with a valid vouch and no valid unvouch.
+     This means that one of the bonding pools we trust has vouched for these solvers but has not unvouched them afterwards.
+     The (earliest) vouch per solver is then kept, and thus is identified the relevant target reward address for each solver. 
