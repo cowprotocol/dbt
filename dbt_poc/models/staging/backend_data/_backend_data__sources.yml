@@ -12,8 +12,11 @@ sources:
       and make follow up models incremental too if we want. 
     tables:
       - name: competition_auctions
+        description: Contains the deadline (in block number) for each auction_id
       - name: proposed_solutions
-        description: table computed by the autopilot listing all the proposed solution of the solvers.
+        description: >
+          table computed by the autopilot listing all the proposed solution of the solvers.
+          We also which solver won for each auction and the score of each proposed solution.
         data_tests:
           - dbt_expectations.expect_compound_columns_to_be_unique:
               column_list: ["auction_id", "uid"]
@@ -33,6 +36,8 @@ sources:
               - not_null
           - name: is_winner                                                
       - name: settlements
+        description: >
+          For each auction, we know who (solver) settled the auction, how (tx_hash), and when (block_number)
         columns:
           - name: auction_id
             data_tests:

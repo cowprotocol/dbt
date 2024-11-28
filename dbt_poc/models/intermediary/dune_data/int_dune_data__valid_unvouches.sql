@@ -11,6 +11,7 @@ invalidate_vouches as (
 valid_unvouches as (
     select 
         * ,
+        Null as reward_target,
         false as is_vouched
     from 
         invalidate_vouches v

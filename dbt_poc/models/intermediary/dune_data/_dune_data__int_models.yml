@@ -32,6 +32,18 @@ models:
       Todo later: create a custom dbt test and tracking table to warn whenever a new entry appears in this table. 
   - name: int_dune_data__actual_valid_vouches
     description: >
-     List of all the solver and their reward target address with a valid vouch and no valid unvouch.
-     This means that one of the bonding pools we trust has vouched for these solvers but has not unvouched them afterwards.
-     The (earliest) vouch per solver is then kept, and thus is identified the relevant target reward address for each solver. 
+     one row per solver. This solver has been:
+     1. vouched by a bonding pool we trust
+     2. not unvouched by a bonding pool we trust AFTER being vouched for
+     If the two conditions are met and the solver still has multiple valid target address (multiple bonding pools vouched for them and did not unvouch after),
+     then we keep the earliest row and it's relevant target address.
+     This sql query was modified compareed to the Dune query (number 1541516) it was based on. 
+     Because we use PostgreSQL here we can be more efficient by stopping scanning rows for a group once the first match is found (early exit behavior)
+     and because we do not use extra memory to assign ranks to all rows.
+     We could augment efficiency if our tables were indexed on solver and the time columns
+  - name: int_dune_data__vouched_named_solvers
+    description: one row per solver that is valid and with the solver name
+    columns:
+      - name: reward_target
+        data_tests:
+          - not_null

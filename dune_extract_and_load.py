@@ -65,11 +65,16 @@ def upload_dataframe_to_postgres(dataframe, table_name, postgres_url, schema_nam
         print(f"An error occurred: {e}")
 
 #get all the Vouches from the cow_protocol_ethereum.VouchRegister_evt_Vouch dune table and upload to table in postgres
-query_id_vouches=4335147
-query_result_vouches= get_data_from_dune_query(query_id_vouches, dune_api_key)
-upload_dataframe_to_postgres(query_result_vouches, "VouchRegister_evt_Vouch", postgres_url, 'aurelie')
+#query_id_vouches=4335147
+#query_result_vouches= get_data_from_dune_query(query_id_vouches, dune_api_key)
+#upload_dataframe_to_postgres(query_result_vouches, "VouchRegister_evt_Vouch", postgres_url, 'aurelie')
 
 #get all the Vouches from the cow_protocol_ethereum.VouchRegister_evt_InvalidateVouch dune table and upload to table in postgres
-query_id_unvouches=4336087
-query_result_unvouches= get_data_from_dune_query(query_id_unvouches, dune_api_key)
-upload_dataframe_to_postgres(query_result_unvouches, "VouchRegister_evt_InvalidateVouch", postgres_url, 'aurelie')
+#query_id_unvouches=4336087
+#query_result_unvouches= get_data_from_dune_query(query_id_unvouches, dune_api_key)
+#upload_dataframe_to_postgres(query_result_unvouches, "VouchRegister_evt_InvalidateVouch", postgres_url, 'aurelie')
+
+#get all the solver addresses and environment from the dune table cow_protocol_ethereum.solvers and upload to postgres
+query_id_solvers=4345829
+query_result_solvers= get_data_from_dune_query(query_id_solvers, dune_api_key)
+upload_dataframe_to_postgres(query_result_solvers, "cow_protocol_ethereum_solvers", postgres_url, 'aurelie')
