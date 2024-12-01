@@ -2,4 +2,13 @@ version: 2
 models:
   - name: stg_backend_data__competition_auctions
   - name: stg_backend_data__proposed_solutions
+    columns:
+      - name: solver
+        description: here we transform the solver to match the dune data
   - name: stg_backend_data__settlements
+    columns:
+      - name: solver
+        description: here we transform the solver to match the dune data
+      - name: tx_hash
+        data_tests:
+          - not_null

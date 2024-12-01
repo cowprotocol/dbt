@@ -3,14 +3,17 @@ version: 2
 models:
   - name: int_backend_data__settlements_in_time
     description: >
-      Model with only the auctinos where we have a setllement 
-      and that provides if the settlement was on time.
-  - name: int_backend_data__score_calculations
+      Includes all the auctions from the competition_auction table (so normally all of our auctions).
+      We add two new columns that indicate if the auction is settled (tx_has exists) and if it is settled on time.
+      We include a grace period (see model code for the exact amount)
+  - name: int_backend_data__two_highest_scores
     description: > 
       Model that simply adds two new columns to the proposed solutions:
       One with the max score for that auction, 
       and one with the second highest score for the aution (or 0 if it does not exist).
-      All the proposed solutions are still present.
+      All the auctions and their associated proposed solutions are still present.
+      In case the logic for calculating the reward for the auction changes and is not
+      based solely on the two highest scores for the auction, then we need to change this model.
   - name: int_backend_data__reward_calculation
-    description: Model with the logic of the final scoring.
-
+    description: For each auction, we calculate the final rewards, wethere the auction is settled or not, on time or not. 
+      The reward is only given if the solver settled on time and if they were declared the winner, otherwise they are penalised.

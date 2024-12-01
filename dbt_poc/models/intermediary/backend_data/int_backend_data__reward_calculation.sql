@@ -2,31 +2,40 @@
     materialized='table'
 )}}
 
-with reward_calculations as (
+with two_highest as (
+    select * from {{ref('int_backend_data__two_highest_scores')}}
+),
+
+settlements as (
+    select * from {{ref('int_backend_data__settlements_in_time')}}
+),
+
+reward_calculations as (
 
     select
-        i.auction_id,
-        i.rank,
-        i.uid,
-        i.is_winner,
-        i.score,
-        i.max_score,
-        i.second_highest_score,
+        th.auction_id,
+        th.rank,
+        th.uid,
+        th.is_winner,
+        th.score,
+        th.max_score,
+        th.second_highest_score,
         s.tx_hash,
         s.solver,
         s.block_number,
         s.block_deadline,
         s.is_settled_in_time,
+        s.is_settled,
         case
-            when s.is_settled_in_time = true then i.max_score - i.second_highest_score
-            else -i.second_highest_score
+            when s.is_settled_in_time = true and th.is_winner = true then th.max_score - th.second_highest_score
+            else -th.second_highest_score
         end as final_reward
     from
-        {{ref('int_backend_data__score_calculations')}} i
-    join
-        {{ref('int_backend_data__settlements_in_time')}} s
+        two_highest th
+    right join
+        settlements s
     on
-        i.auction_id = s.auction_id
+        th.auction_id = s.auction_id
 
 )
 
