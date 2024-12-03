@@ -13,7 +13,7 @@ models:
         data_tests:
           - unique:
               severity: warn
-      - name: final_reward
+      - name: capped_reward
         description: either a positive, null or negative reward associated with the auction and the solver
         data_tests: 
           - not_null

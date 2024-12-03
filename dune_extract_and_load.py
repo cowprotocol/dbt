@@ -75,6 +75,11 @@ def upload_dataframe_to_postgres(dataframe, table_name, postgres_url, schema_nam
 #upload_dataframe_to_postgres(query_result_unvouches, "VouchRegister_evt_InvalidateVouch", postgres_url, 'aurelie')
 
 #get all the solver addresses and environment from the dune table cow_protocol_ethereum.solvers and upload to postgres
-query_id_solvers=4345829
-query_result_solvers= get_data_from_dune_query(query_id_solvers, dune_api_key)
-upload_dataframe_to_postgres(query_result_solvers, "cow_protocol_ethereum_solvers", postgres_url, 'aurelie')
+#query_id_solvers=4345829
+#query_result_solvers= get_data_from_dune_query(query_id_solvers, dune_api_key)
+#upload_dataframe_to_postgres(query_result_solvers, "cow_protocol_ethereum_solvers", postgres_url, 'aurelie')
+
+#get all the rewards from the already calclated rewards from the accounting based on all the transaction hashes I had for the dbt jobs
+query_id_rewards=4335147
+query_result_rewards= get_data_from_dune_query(query_id_rewards, dune_api_key)
+upload_dataframe_to_postgres(query_result_rewards, "cowswap_raw_batch_rewards", postgres_url, 'aurelie')

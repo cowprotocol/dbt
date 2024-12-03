@@ -3,3 +3,4 @@ models:
   - name: stg_dune_data__vouch
   - name: stg_dune_data__invalidate_vouch
   - name: stg_dune_data__cow_protocol_ethereum_solvers
+  - name: stg_src_dune_solver_payments

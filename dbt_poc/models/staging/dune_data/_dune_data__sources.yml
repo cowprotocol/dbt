@@ -16,3 +16,7 @@ sources:
           This come frome the dune table cow_protocol_ethereum.VouchRegister_evt_InvalidateVouch
       - name: cow_protocol_ethereum_solvers
         description: all of the table cow_protocol_ethereum.solvers
+      - name: src_dune_solver_payments
+        description: >
+          The payments that have already been executed on the transactions hashes we have observed in this poc. 
+          This table is only used to compare the final results of the dbt POC with the old accounting calculations.

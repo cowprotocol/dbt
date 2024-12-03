@@ -46,7 +46,8 @@ select
     tx_hash,
     solver,
     is_settled_in_time,
-    final_reward,
+    capped_reward,
+    uncapped_reward,
     reward_target,
     solver_name
 from unique_solver_rewards
