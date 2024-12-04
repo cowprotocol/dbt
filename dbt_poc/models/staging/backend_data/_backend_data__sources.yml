@@ -8,7 +8,7 @@ sources:
       We will periodically upload new data from the backend db to the analytics db. 
       When we do this, we need to make sure that there is a column (named updated_at for example)
       which indicates when the row was uploaded to our analytics database.
-      Then, we can use this column to incrementaly load the data inside of the staging model
+      Then, we can use this column to incrementally load the data inside of the staging model
       and make follow up models incremental too if we want. 
     tables:
       - name: competition_auctions
@@ -16,7 +16,7 @@ sources:
       - name: proposed_solutions
         description: >
           table computed by the autopilot listing all the proposed solution of the solvers.
-          We also which solver won for each auction and the score of each proposed solution.
+          We also store which solver won for each auction and the score of each proposed solution.
         data_tests:
           - dbt_expectations.expect_compound_columns_to_be_unique:
               column_list: ["auction_id", "uid"]

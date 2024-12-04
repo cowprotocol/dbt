@@ -1,12 +1,13 @@
 # Data marts are the final models, and often a join between multiple data sources so we name them by their type: facts (fct) or dimensions (dim)
 #Fact tables capture the quantitative essence of business events – sales, clicks, shipments. Dimension tables provide the crucial context – who, what, where, when
+# What would be an example for a dimension in the context at hand?
 version: 2
 
 models:
   - name: fct_sender_rewards
     description: >
-      Model with only the auctions where we have a setlement and the solver addresses
-      so that we can either pay out the solver or ask for penalty.
+      Model for rewards per auction. The reward is aggregated per solver on a weekly basis and sent
+      to the reward target address. Negative rewards indicate penalties for failed settlements.
     columns:
       - name: auction_id
         description: we should only have one winner per auction, otherwise it means that multiple solvers settled!
