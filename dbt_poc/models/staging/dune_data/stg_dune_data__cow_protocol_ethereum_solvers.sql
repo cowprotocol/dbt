@@ -1,3 +1,11 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key=['address', 'environment', 'name']
+    )
+}}
+
+
 with 
 
 source as (
@@ -7,3 +15,7 @@ source as (
 )
 
 select * from source
+
+{% if is_incremental() %}
+    where source.updated_at > (select max(updated_at) from {{ this }})
+{% endif %}

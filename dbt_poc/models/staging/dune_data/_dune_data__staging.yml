@@ -1,6 +1,18 @@
 version: 2
 models:
   - name: stg_dune_data__vouch
+    description: >
+      Incremental model that adds new rows where the column update_at has changed. 
+      In theory, this should be enough to make sure it is new data if the automation logic to get data from Dune stands.
+      But, in case there is a mistake, we also added the strategy that 
+      the incremental model looks at a combintation of columns that should be unique
+      and deletes those rows in case it inserts a new row with a newer updated_at that has the same data.
   - name: stg_dune_data__invalidate_vouch
+    description: > 
+      Incremental model that adds new rows where the column update_at has changed. 
+      Same logic as the stg_dune_data__vouch model
   - name: stg_dune_data__cow_protocol_ethereum_solvers
+    description: > 
+      Incremental model that adds new rows where the column update_at has changed. 
+      Same logic as the stg_dune_data__vouch model
   - name: stg_src_dune_solver_payments

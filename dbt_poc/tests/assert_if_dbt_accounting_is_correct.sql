@@ -1,7 +1,3 @@
-{{ config(
-    materialized='table'
-)}}
-
 with 
 
 dbt_rewards as (
@@ -23,6 +19,8 @@ sender_rewards_all as (
         dr.tx_hash = ar.tx_hash
     where
         dr.uncapped_reward != ar.uncapped_payment_eth
+    or 
+        dr.capped_reward != ar.capped_payment
 )
 
 select * from sender_rewards_all

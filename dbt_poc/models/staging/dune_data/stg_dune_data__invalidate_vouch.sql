@@ -1,7 +1,15 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key=['tx_hash', 'index']
+    )
+}}
+
 with 
 
 source as (
     select 
+        updated_at,
         contract_address,
         evt_tx_hash as tx_hash,
         evt_index as index,
@@ -15,3 +23,7 @@ source as (
 )
 
 select * from source
+
+{% if is_incremental() %}
+    where source.updated_at > (select max(updated_at) from {{ this }})
+{% endif %}

@@ -13,11 +13,13 @@ invalid_vouches as (
     select 
         * 
     from 
-        vouches 
-    where
-        bonding_pool not in (select distinct pool_address from full_bonding_pools)
-    or
-        sender not in (select distinct initial_funder from full_bonding_pools)
+        vouches v 
+    where not exists (
+        select 1 
+        from full_bonding_pools fb
+        where v.bonding_pool = fb.pool_address
+        and v.sender = fb.initial_funder
+    )
 )
 
 select * from invalid_vouches

@@ -11,6 +11,9 @@ sources:
           This come frome the dune table cow_protocol_ethereum.VouchRegister_evt_Vouch
           We only vouch if a new solver joins (say, every few weeks) or when solvers change their reward target address (happens less often).
           This table is not uploaded by us. Instead, it is indexed directly from the blockchain by Dune.
+        columns:
+          - name: updated_at
+            description: date of the insertion of the row inside of the Analytics databse. Is used for the incremental models.
       - name: VouchRegister_evt_InvalidateVouch
         description: >
           This come frome the dune table cow_protocol_ethereum.VouchRegister_evt_InvalidateVouch
