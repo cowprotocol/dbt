@@ -37,3 +37,12 @@ sources:
       - name: cow_protocol_ethereum_batches
         description: >
           Query id: 4468789. Filtered on the same timestamp as raw_slippage for now because the data is too big for now.
+      - name: cow_protocol_ethereum_service_fees
+        description: >
+          The already complicated logic to flag if a solver should pay a service fee or not for the CoW Protocol.
+          This only applies to a subset of all solvers. 
+          True flag if the service fee is activated, and the cow rewards should be reduced by 15%.
+          For certain solvers in the cow DAO bonding pool, after 6 months they start paying a service fee. 
+          At some point this logic should be changed, probably we should have a table with a list of solvers and when they entered the DAO.
+          This query id in dune is 4298142 and the parameters used:           
+          {blockchain: ethereum, start_time : "2024-09-01 00:00:00", end_time: "2024-09-02 00:00:00"}
