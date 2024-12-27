@@ -50,4 +50,15 @@ sources:
               - not_null
           - name: block_number
             data_tests:
-              - not_null                                        
+              - not_null      
+  
+  - name: backend_data_aurelie  
+    schema: aurelie
+    description: > 
+      This is a temporary source that needs to be replaced by the actual data dump (like for the temp_backend_db_dump schema).
+      This data is temporarily under the schema aurelie because I did not have write access to the temp_backend_db_dump schema
+      when doing a partial data synch from the backend db to the analytics db with dune synch v2.
+    tables:
+      - name: backend_data__trades
+        description: Contains the different trades for each block
+                                      

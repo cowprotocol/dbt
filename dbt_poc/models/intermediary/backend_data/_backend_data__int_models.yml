@@ -17,3 +17,12 @@ models:
   - name: int_backend_data__reward_calculation
     description: For each auction, we calculate the final rewards, wethere the auction is settled or not, on time or not. 
       The reward is only given if the solver settled on time and if they were declared the winner, otherwise they are penalised.
+  - name: int_backend_data__trade_with_tx_hash
+    description: >
+      For each trade/order_uid we have the corresponding transaction hash. 
+      A trade happens in a block, then later there is a settlement (then there can be or not another trade and another settlement and so on).
+      So the smallest log_index per trade corresponds to the tx_hash of the smallest log_index per settelment, and so on.
+    data_tests:
+      - assert_always_smaller_than:
+          smaller_column: trade_log_index
+          bigger_column: settlement_log_index
