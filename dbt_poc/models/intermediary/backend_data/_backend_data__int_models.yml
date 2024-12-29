@@ -26,3 +26,15 @@ models:
       - assert_always_smaller_than:
           smaller_column: trade_log_index
           bigger_column: settlement_log_index
+  - name: int_backend_data__orders_with_winning_quotes
+    description: > 
+      selection of all the order uids that have winning quotes. We can sum them per solver to get the quote rewards later.
+  - name: int_backend_data__order_data
+    description: >
+      join between the order and jit order tables. 
+      Is used in the calculations for the protocol and partner fees - this could be optimised? 
+  - name: int_backend_data__trade_data_unprocessed
+    description: >
+      Joins settlents, settlements scores, trades, order data, order executino, and app data! 
+      Is used in the calculations for the protocol and partner fees - this could be optimised? 
+      TODO check why the first_protocol_fee is always 0. Probably because there is no overlapping data

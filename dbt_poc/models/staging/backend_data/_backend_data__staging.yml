@@ -12,3 +12,5 @@ models:
       - name: tx_hash
         data_tests:
           - not_null
+  - name: stg_backend_data__order_execution
+    descriptino: TODO, should we add the protocol_fee_tokens?? and if so, how to clean this column?

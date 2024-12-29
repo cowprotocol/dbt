@@ -61,4 +61,11 @@ sources:
     tables:
       - name: backend_data__trades
         description: Contains the different trades for each block
+      - name: backend_data__orders
+      - name: backend_data__jit_orders
+      - name: backend_data__order_quotes
+      - name: backend_data__order_execution
+      - name: backend_data__app_data
+      - name: backend_data__settlement_scores
+      - name: backend_data__auction_prices
                                       
