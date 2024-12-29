@@ -33,7 +33,10 @@ trade_data_processed_with_prices as (
         tdp.sell_token as network_fee_token,
         surplus_token_native_price,
         protocol_fee_token_native_price,
-        network_fee_token_native_price
+        network_fee_token_native_price,
+        tdp.protocol_fee * protocol_fee_token_native_price as protocol_fee_native
+        tdp.partner_fee * protocol_fee_token_native_price as partner_fee_native_native
+        -- TODO tdp.network_fee * network_fee_token_native_price as network_fee_native
     from trade_data_processed as tdp 
     inner join price_data as pd
         on tdp.auction_id = pd.auction_id 
