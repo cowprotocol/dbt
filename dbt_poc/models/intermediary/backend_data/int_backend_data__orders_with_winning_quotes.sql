@@ -16,7 +16,14 @@ o as (
 
 winning_quotes as (
     select 
-        oq.order_uid
+        oq.order_uid,
+        oq.gas_amount,
+        oq.gas_price,
+        oq.sell_token_price,
+        oq.sell_amount,
+        oq.buy_amount,
+        oq.solver,
+        oq.verified
     from o
     inner join oq on o.uid = oq.order_uid
     where

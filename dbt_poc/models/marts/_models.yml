@@ -17,3 +17,6 @@ models:
         description: either a positive, null or negative reward associated with the auction and the solver
         data_tests: 
           - not_null
+  - name: fct_data_per_trade
+    description: >
+      All the data for the trades. TODO, describe better with Felix

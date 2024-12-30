@@ -17,7 +17,7 @@ trade_data_processed as (
         sell_amount,
         buy_amount,
         sell_token,
-        --observed_fee,   TODO this column does not exist! based on previous model
+        observed_fee,  
         surplus_token,
         second_protocol_fee_amount,
         first_protocol_fee_amount + second_protocol_fee_amount as protocol_fee,
