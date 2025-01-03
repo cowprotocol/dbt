@@ -37,5 +37,3 @@ models:
       Joins settlents, settlements scores, trades, order data, order executino, and app data! 
       Is used in the calculations for the protocol and partner fees - this could be optimised? 
       TODO check why the first_protocol_fee is always 0. Probably because there is no overlapping data
-    data_tests:
-      - assert_if_combination_of_order_uid_and_tx_hash_is_equal

@@ -6,3 +6,6 @@ tests:
       This tests passes if nothing is returned because we select rows where the results are different.
       Possible ToDo later: at the moment, we query in dune the results of the transaction hashes that we have in dbt to minimize the rows returned (800 instead of more than 800 000)
       When we add more transactions in thhe dbt logic, we could make sure to compare them too.
+  - name: assert_if_combination_of_order_uid_and_tx_hash_is_equal
+    description: > 
+      Test to compare the data between a query written before and another way to fine the corresponding tx_hash with order_uid.
