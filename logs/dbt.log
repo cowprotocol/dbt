@@ -13,3 +13,18 @@ Runtime Error
 [0m15:11:28.909365 [debug] [MainThread]: Command `dbt build` failed at 15:11:28.908931 after 0.52 seconds
 [0m15:11:28.910823 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10695f250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102c61750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106925bd0>]}
 [0m15:11:28.912512 [debug] [MainThread]: Flushing usage events
+[0m11:06:34.373048 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ca0e150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ca2a610>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ca4bd50>]}
+
+
+============================== 11:06:34.400142 | 19cb225d-4c17-49a1-b11e-f8cf94ff3e63 ==============================
+[0m11:06:34.400142 [info ] [MainThread]: Running with dbt=1.8.8
+[0m11:06:34.402042 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/aurelieferron/.dbt', 'debug': 'False', 'warn_error': 'None', 'log_path': 'logs', 'fail_fast': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'log_format': 'default', 'introspect': 'True', 'target_path': 'None', 'invocation_command': 'dbt docs generate', 'send_anonymous_usage_stats': 'True'}
+[0m11:06:34.409541 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/aurelieferron/dev/data-pipeline-poc/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m11:06:34.451197 [debug] [MainThread]: Resource report: {"command_name": "generate", "command_wall_clock_time": 0.48629108, "process_user_time": 3.090958, "process_kernel_time": 0.948674, "process_mem_max_rss": "85774336", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m11:06:34.456548 [debug] [MainThread]: Command `dbt docs generate` failed at 11:06:34.456029 after 0.49 seconds
+[0m11:06:34.458033 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108d85b90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ca57890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ca57b50>]}
+[0m11:06:34.459163 [debug] [MainThread]: Flushing usage events

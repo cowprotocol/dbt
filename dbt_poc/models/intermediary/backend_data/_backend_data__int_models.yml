@@ -20,8 +20,7 @@ models:
   - name: int_backend_data__trade_with_tx_hash
     description: >
       For each trade/order_uid we have the corresponding transaction hash. 
-      A trade happens in a block, then later there is a settlement (then there can be or not another trade and another settlement and so on).
-      So the smallest log_index per trade corresponds to the tx_hash of the smallest log_index per settelment, and so on.
+      One or many trades happen in a block, then later there is a settlement (then there can be or not another trade and another settlement and so on).
     data_tests:
       - assert_always_smaller_than:
           smaller_column: trade_log_index
@@ -38,3 +37,5 @@ models:
       Joins settlents, settlements scores, trades, order data, order executino, and app data! 
       Is used in the calculations for the protocol and partner fees - this could be optimised? 
       TODO check why the first_protocol_fee is always 0. Probably because there is no overlapping data
+    data_tests:
+      - assert_if_combination_of_order_uid_and_tx_hash_is_equal

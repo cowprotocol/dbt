@@ -14,24 +14,22 @@ trades as (
     from {{ref('stg_backend_data__trades')}}
 ),
 
-ranked_trades as (
+settlements_with_previous as (
+    -- for each settlement, calculate the previous settlement's log_index within the same block
     select
-        *,
-        row_number() over (partition by block_number order by log_index) as rank
-    from
-        trades
-),
-
-ranked_settlements as (
-    select
-        *,
-        row_number() over (partition by block_number order by log_index) as rank
+        tx_hash,
+        block_number,
+        log_index as settlement_log_index,
+        lag(log_index) over (partition by block_number order by log_index) as previous_settlement_log_index,
+        solver,
+        tx_from,
+        tx_nonce,
+        auction_id
     from
         settlements
 ),
-
-trade_with_tx_hash as (
-
+trade_settlement_matching as (
+    -- match each trade to the settlement that happens immediately after it
     select
         t.block_number,
         t.order_uid,
@@ -40,19 +38,25 @@ trade_with_tx_hash as (
         t.buy_amount,
         t.fee_amount,
         s.tx_hash,
-        s.log_index as settlement_log_index,
+        s.settlement_log_index,
         s.solver,
         s.tx_from,
         s.tx_nonce,
         s.auction_id
     from
-        ranked_trades t
-    join
-        ranked_settlements s
+        trades t
+    inner join
+        settlements_with_previous s
     on
         t.block_number = s.block_number
-        and t.rank = s.rank
-
+    where
+        -- the trade log_index must be greater than the previous settlement (or no previous settlement exists)
+        (t.log_index > coalesce(s.previous_settlement_log_index, -1))
+        -- the trade log_index must be less than or equal to the current settlement
+        and t.log_index <= s.settlement_log_index
 )
-
-select * from trade_with_tx_hash
+-- final output
+select
+    *
+from
+    trade_settlement_matching
