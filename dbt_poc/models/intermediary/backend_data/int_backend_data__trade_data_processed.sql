@@ -14,6 +14,7 @@ trade_data_processed as (
         solver,
         tx_hash,
         order_uid,
+        block_number,
         sell_amount,
         buy_amount,
         sell_token,

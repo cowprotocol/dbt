@@ -17,6 +17,7 @@ auction_prices as (
 price_data as (
     select
         tdp.auction_id,
+        tdp.block_number,
         tdp.order_uid,
         ap_surplus.price / 1e18 as surplus_token_native_price,
         ap_protocol.price / 1e18 as protocol_fee_token_native_price,

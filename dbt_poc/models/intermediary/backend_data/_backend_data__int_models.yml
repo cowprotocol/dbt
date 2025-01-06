@@ -37,3 +37,18 @@ models:
       Joins settlents, settlements scores, trades, order data, order executino, and app data! 
       Is used in the calculations for the protocol and partner fees - this could be optimised? 
       TODO check why the first_protocol_fee is always 0. Probably because there is no overlapping data
+    data_tests:
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list: ["auction_id", "order_uid"]
+  - name: int_backend_data__protocol_fee_type
+    description: >
+      all rows where we have a protocol fee type.
+      The protocol fee is the smallest application_order and partner_fee is largest. This is why we keep the first row only.
+    data_tests:  
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list: ["auction_id", "order_uid"]
+    columns: 
+      - name: protocol_fee_type
+        data_tests: 
+          - accepted_values:
+              values: ['priceimprovement', 'surplus', null]

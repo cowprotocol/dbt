@@ -29,4 +29,6 @@ models:
        - network_fee_amount * network_fee_price should not be below minus 10e12 WEI
        - if there is a partner_fee, there should always be a protocol_fee
        - order_uid, tx_hash, auction_id, block_number, solver, network_fee_amount, network_fee_price not null
-       
+    data_tests:
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list: ["tx_hash", "order_uid"]

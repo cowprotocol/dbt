@@ -20,6 +20,7 @@ trade_data_processed_with_prices as (
         tdp.solver,
         tdp.tx_hash,
         tdp.order_uid,
+        tdp.block_number,
         tdp.surplus_token,
         tdp.protocol_fee,
         tdp.protocol_fee_token,

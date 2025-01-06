@@ -44,6 +44,7 @@ trade_data_unprocessed as (
         s.auction_id,
         s.tx_hash,
         t.order_uid,
+        t.block_number,
         od.sell_token,
         od.buy_token,
         t.sell_amount, -- the total amount the user sends
