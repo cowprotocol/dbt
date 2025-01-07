@@ -47,3 +47,8 @@ models:
       - name: reward_target
         data_tests:
           - not_null
+  - name : int_dune_data__slippage_per_transaction
+    columns:
+      - name: tx_hash
+        data_tests:
+          - unique

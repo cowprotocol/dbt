@@ -42,12 +42,16 @@ unique_solver_rewards as (-- only keep one row per solver and auction_id
 
 select 
     auction_id,
-    is_winner,
+    block_number,
+    block_deadline,
+    is_winner, 
     tx_hash,
     solver,
     is_settled_in_time,
-    capped_reward,
-    uncapped_reward,
+    capped_reward as capped_payment_eth, -- ask Felix if this is correct naming
+    uncapped_reward as uncapped_payment_eth, -- ask Felix if this is correct naming
     reward_target,
-    solver_name
+    solver_name,
+    max_score as winning_score,
+    second_highest_score as reference_score
 from unique_solver_rewards

@@ -32,9 +32,10 @@ trade_data_processed_with_prices as (
             else tdp.observed_fee - coalesce(tdp.protocol_fee, 0)
         end as network_fee, 
         tdp.sell_token as network_fee_token,
-        surplus_token_native_price,
-        protocol_fee_token_native_price,
-        network_fee_token_native_price
+        tdp.observed_fee,
+        pd.surplus_token_native_price,
+        pd.protocol_fee_token_native_price,
+        pd.network_fee_token_native_price
     from trade_data_processed as tdp 
     inner join price_data as pd
         on tdp.auction_id = pd.auction_id 

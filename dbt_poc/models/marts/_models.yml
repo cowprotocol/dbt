@@ -6,14 +6,16 @@ models:
   - name: fct_sender_rewards
     description: >
       Model with only the auctions where we have a setlement and the solver addresses
-      so that we can either pay out the solver or ask for penalty.
+    data_tests:
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list: ["tx_hash", "auction_id"]    
     columns:
       - name: auction_id
-        description: we should only have one winner per auction, otherwise it means that multiple solvers settled!
+        description: we should only have one winner per auction, otherwise it means that multiple solvers settled! TODO Ask Felix
         data_tests:
           - unique:
               severity: warn
-      - name: capped_reward
+      - name: capped_payment_eth
         description: either a positive, null or negative reward associated with the auction and the solver
         data_tests: 
           - not_null
@@ -32,3 +34,52 @@ models:
     data_tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
           column_list: ["tx_hash", "order_uid"]
+  - name: fct_data_per_solution
+    description: > 
+      Data for each auction and solution that has actually been settled. 
+      Most of the time, an auction_id should only have one tx_hash, but it could be that a solver settled when he should not (then is_winner is false)
+      and we might want in the future to allow for multiple solutions per auction.
+      We can use this table as a basis to know which solver to pay or penalise, 
+      as well as the protocol feess, networks fees, execution costs (still TODO), slippage, and weather a service fee has to be charged.
+    data_tests:
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list: ["tx_hash", "auction_id"]    
+    columns: 
+      - name: auction_id
+        description: we should only have one winner per auction, otherwise it means that multiple solvers settled!
+        data_tests:
+          - unique:
+              severity: warn
+      - name: block_number
+        data_tests: 
+          - not_null
+      - name: block_deadline
+        data_tests: 
+          - not_null
+      - name: tx_hash   
+        data_tests: 
+          - not_null
+      - name: solver
+        data_tests: 
+          - not_null    
+      - name: uncapped_payment_eth
+      - name: capped_payment_eth
+      - name: is_winner
+        description: if false, then a solver settled when he should not have, so we send a warning!
+        data_tests:
+          - accepted_values:
+              values:
+                - true
+              severity: warn
+      - name: winning_score
+      - name: reference_score 
+      - name: is_settled_in_time
+      - name: reward_target
+        data_tests: 
+          - not_null    
+      - name: solver_name
+      - name: protocol_fee
+      - name: network_fee
+      - name: slippage_wei
+      - name: slippage_usd
+      - name: service_fee
