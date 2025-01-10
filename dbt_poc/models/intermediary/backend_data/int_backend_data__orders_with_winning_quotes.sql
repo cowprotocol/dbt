@@ -46,3 +46,8 @@ winning_quotes as (
 )
 
 select * from winning_quotes
+
+
+--thee is a quote competition, you get showed a quote in the ui, and if you then place an order, 
+--and if this order gets executed, the solver that provides the quote then gets a reward (they are not necessarily the ones that eecute the order).
+--The reward is computed: the minimum of two numbers: 6 cow tokens or value of 0.0006 eth converted to cow (using the echange rate for the)

@@ -22,7 +22,7 @@ trade_data_processed_with_prices as (
         tdp.order_uid,
         tdp.block_number,
         tdp.surplus_token,
-        tdp.protocol_fee,
+        tdp.protocol_fee as protocol_fee_amount,
         tdp.protocol_fee_token,
         tdp.partner_fee,
         tdp.partner_fee_recipient,
@@ -45,7 +45,7 @@ trade_data_processed_with_prices as (
 trade_data_processed_with_native_prices as (
     select 
         *,
-        protocol_fee * protocol_fee_token_native_price as protocol_fee_native,
+        protocol_fee_amount * protocol_fee_token_native_price as protocol_fee_native,
         partner_fee * protocol_fee_token_native_price as partner_fee_native,
         network_fee * network_fee_token_native_price as network_fee_native
     from trade_data_processed_with_prices

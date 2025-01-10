@@ -25,7 +25,7 @@ sender_rewards_all as (
         auction_id,
         tx_hash,
         sum(observed_fee) as observed_fee,
-        sum(protocol_fee) as protocol_fee,
+        sum(protocol_fee_amount) as protocol_fee_amount,
         sum(network_fee) as network_fee
     from trade_data
     group by 
@@ -41,8 +41,7 @@ data_per_solution as (
         r.block_deadline,
         r.tx_hash,
         r.solver,
-        r.uncapped_payment_eth,
-        r.capped_payment_eth,
+        r.batch_reward,
         r.is_winner,
         r.winning_score,
         r.reference_score,
@@ -50,7 +49,7 @@ data_per_solution as (
         r.reward_target,
         r.solver_name, 
         sra.observed_fee,
-        sra.protocol_fee,
+        sra.protocol_fee_amount,
         sra.network_fee,
         spt.slippage_wei,
         spt.slippage_usd,

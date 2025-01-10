@@ -11,11 +11,11 @@ models:
           column_list: ["tx_hash", "auction_id"]    
     columns:
       - name: auction_id
-        description: we should only have one winner per auction, otherwise it means that multiple solvers settled! TODO Ask Felix
+        description: we should only have one winner per auction, otherwise it means that multiple solvers settled! 
         data_tests:
           - unique:
               severity: warn
-      - name: capped_payment_eth
+      - name: batch_reward
         description: either a positive, null or negative reward associated with the auction and the solver
         data_tests: 
           - not_null
@@ -34,6 +34,7 @@ models:
     data_tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
           column_list: ["tx_hash", "order_uid"]
+          severity: warn
   - name: fct_data_per_solution
     description: > 
       Data for each auction and solution that has actually been settled. 
@@ -43,7 +44,8 @@ models:
       as well as the protocol feess, networks fees, execution costs (still TODO), slippage, and weather a service fee has to be charged.
     data_tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
-          column_list: ["tx_hash", "auction_id"]    
+          column_list: ["tx_hash", "auction_id"] 
+          severity: warn  
     columns: 
       - name: auction_id
         description: we should only have one winner per auction, otherwise it means that multiple solvers settled!

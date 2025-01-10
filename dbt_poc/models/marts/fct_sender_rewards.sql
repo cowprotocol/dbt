@@ -48,8 +48,7 @@ select
     tx_hash,
     solver,
     is_settled_in_time,
-    capped_reward as capped_payment_eth, -- ask Felix if this is correct naming
-    uncapped_reward as uncapped_payment_eth, -- ask Felix if this is correct naming
+    capped_reward as batch_reward, -- ask Felix if this is correct naming
     reward_target,
     solver_name,
     max_score as winning_score,
