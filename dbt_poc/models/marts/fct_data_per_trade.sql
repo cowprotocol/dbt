@@ -23,14 +23,14 @@ data_per_trade as (
         td.auction_id ,
         td.block_number,
         td.solver as solver,
-        'TODO' as quote_reward, --ask Felix?
+        'TODO' as is_eligeable_for_quote_reward, --ask Felix?
         qr.sell_amount as quote_sell_amount,
         qr.buy_amount as quote_buy_amount,
         qr.gas_amount * qr.gas_price as quote_gas_cost,
         qr.sell_token_price as quote_sell_token_price,
         qr.solver as quote_solver,
         td.protocol_fee_token as partner_fee_token, 
-        td.partner_fee as partner_fee_amount, -- always zero in our example, ask Felix
+        td.partner_fee as partner_fee_amount,
         td.protocol_fee_token_native_price as partner_fee_price, 
         td.partner_fee_native,
         td.protocol_fee_token,
