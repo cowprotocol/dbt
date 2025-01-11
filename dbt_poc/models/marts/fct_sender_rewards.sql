@@ -48,6 +48,7 @@ select
     tx_hash,
     solver,
     is_settled_in_time,
+    execution_cost,
     capped_reward as batch_reward, -- ask Felix if this is correct naming
     reward_target,
     solver_name,

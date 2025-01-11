@@ -67,6 +67,8 @@ sources:
       - name: backend_data__order_execution
       - name: backend_data__app_data
       - name: backend_data__settlement_scores
+      - name: backend_data__settlement_observations
       - name: backend_data__auction_prices
       - name: backend_data__fee_policies
+
                                       

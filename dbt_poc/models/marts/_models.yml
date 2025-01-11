@@ -25,12 +25,14 @@ models:
       A trade is an execution of an order. There are partially fillable orders, so one order can be executed in multiple times.
       It is also the name of the trade events that are on-chain.
       network_fee_amount and other amounts are in the token (not WEI)
+      TODO: check why i have so many duüplicates
       TODO Tests: 
        - tx_hash and order_uid unique combo.
        - protocol_fee_amount should not be above 1 percent of buy amount for buy order or sell amount of sell order (in the trades table for amounts, and type of order in the order table)
        - network_fee_amount * network_fee_price should not be below minus 10e12 WEI
        - if there is a partner_fee, there should always be a protocol_fee
        - order_uid, tx_hash, auction_id, block_number, solver, network_fee_amount, network_fee_price not null
+       - test if is_eligeable_for_quote_rewards is true then needs to have a quote_solver
     data_tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
           column_list: ["tx_hash", "order_uid"]

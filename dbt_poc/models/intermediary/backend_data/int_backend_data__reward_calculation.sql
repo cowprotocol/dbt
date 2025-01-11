@@ -48,6 +48,7 @@ reward_calculations_capped as (
         block_deadline,
         is_settled_in_time,
         is_settled,
+        execution_cost,
         uncapped_reward,
         case
             when uncapped_reward > 12 * 10^15 then 12 * 10^15

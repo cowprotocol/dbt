@@ -23,7 +23,8 @@ winning_quotes as (
         oq.sell_amount,
         oq.buy_amount,
         oq.solver,
-        oq.verified
+        oq.verified,
+        true as is_eligeable_for_quote_reward
     from o
     inner join oq on o.uid = oq.order_uid
     where

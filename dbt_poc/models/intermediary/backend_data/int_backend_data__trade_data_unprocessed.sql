@@ -5,7 +5,7 @@
 with s as (
     select 
         *
-    from {{ref('stg_backend_data__settlements')}}
+    from {{ref('int_backend_data__settlements_execution_costs')}}
 ),
 
 ss as (
@@ -43,6 +43,7 @@ trade_data_unprocessed as (
         ss.winner as solver,
         s.auction_id,
         s.tx_hash,
+        s.execution_cost,
         t.order_uid,
         t.block_number,
         od.sell_token,

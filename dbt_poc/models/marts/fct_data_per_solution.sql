@@ -24,7 +24,6 @@ sender_rewards_all as (
     select 
         auction_id,
         tx_hash,
-        sum(observed_fee) as observed_fee,
         sum(protocol_fee_amount) as protocol_fee_amount,
         sum(network_fee) as network_fee
     from trade_data
@@ -48,7 +47,7 @@ data_per_solution as (
         r.is_settled_in_time,
         r.reward_target,
         r.solver_name, 
-        sra.observed_fee,
+        r.execution_cost,
         sra.protocol_fee_amount,
         sra.network_fee,
         spt.slippage_wei,

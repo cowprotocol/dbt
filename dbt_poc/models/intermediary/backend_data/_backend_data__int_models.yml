@@ -28,6 +28,7 @@ models:
   - name: int_backend_data__orders_with_winning_quotes
     description: > 
       selection of all the order uids that have winning quotes. We can sum them per solver to get the quote rewards later.
+      ask Felix TODO if it is normal to have so little order uids with winning quotes
   - name: int_backend_data__order_data
     description: >
       join between the order and jit order tables. 
@@ -51,3 +52,13 @@ models:
         data_tests: 
           - accepted_values:
               values: ['priceimprovement', 'surplus', null]
+  - name: int_backend_data__price_data
+    columns:
+      - name: surplus_token_native_price
+        data_tests:
+          - not_null:
+              severity: warn
+      - name: network_fee_token_native_price
+        data_tests:
+          - not_null:
+              severity: warn

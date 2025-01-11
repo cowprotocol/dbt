@@ -5,7 +5,7 @@
 with settlements as (
     select 
         *
-    from {{ref('stg_backend_data__settlements')}}
+    from {{ref('int_backend_data__settlements_execution_costs')}}
 ),
 
 trades as (
@@ -24,7 +24,8 @@ settlements_with_previous as (
         solver,
         tx_from,
         tx_nonce,
-        auction_id
+        auction_id,
+        execution_cost
     from
         settlements
 ),
@@ -42,7 +43,8 @@ trade_settlement_matching as (
         s.solver,
         s.tx_from,
         s.tx_nonce,
-        s.auction_id
+        s.auction_id,
+        s.execution_cost
     from
         trades t
     inner join

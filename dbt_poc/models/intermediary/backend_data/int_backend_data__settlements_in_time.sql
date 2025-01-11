@@ -7,8 +7,9 @@ with settlements as (
         auction_id,
         tx_hash,
         solver,
-        block_number
-    from {{ref('stg_backend_data__settlements')}}
+        block_number,
+        execution_cost
+    from {{ref('int_backend_data__settlements_execution_costs')}}
 ),
 
 competition_auctions as (

@@ -23,7 +23,7 @@ data_per_trade as (
         td.auction_id ,
         td.block_number,
         td.solver as solver,
-        'TODO' as is_eligeable_for_quote_reward, --ask Felix?
+        qr.is_eligeable_for_quote_reward,
         qr.sell_amount as quote_sell_amount,
         qr.buy_amount as quote_buy_amount,
         qr.gas_amount * qr.gas_price as quote_gas_cost,
