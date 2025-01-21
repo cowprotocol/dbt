@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: int_accounting_period_data__conversion_rates
+    description: >
+      For each accounting period and block number, the conversion rate from native to cow

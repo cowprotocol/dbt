@@ -46,3 +46,11 @@ sources:
           At some point this logic should be changed, probably we should have a table with a list of solvers and when they entered the DAO.
           This query id in dune is 4298142 and the parameters used:           
           {blockchain: ethereum, start_time : "2024-09-01 00:00:00", end_time: "2024-09-02 00:00:00"}
+      - name : dune_data__orders_old
+        description: the old way of getting order data. Is only used to compare with our results
+      - name: dune_data__block_timestamp
+        description: timestamp for each block number
+      - name: dune_data__converstion-rate-accounting-period-november-22
+        description: >
+          the cow conversion rate for thhe ethereum blockchain for a certain accounting period
+          At the moment, it is only for the period we have data for (November 22)
