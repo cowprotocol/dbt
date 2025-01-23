@@ -22,15 +22,15 @@ trade_data_processed_with_prices as (
         tdp.order_uid,
         tdp.block_number,
         tdp.surplus_token,
-        tdp.protocol_fee as protocol_fee_amount,
+        tdp.protocol_fee_amount,
         tdp.protocol_fee_token,
-        tdp.partner_fee,
+        tdp.partner_fee_amount,
         tdp.partner_fee_recipient,
         case
             when tdp.sell_token != tdp.surplus_token 
-            then tdp.observed_fee - (tdp.sell_amount - tdp.observed_fee) / tdp.buy_amount * coalesce(tdp.protocol_fee, 0)
-            else tdp.observed_fee - coalesce(tdp.protocol_fee, 0)
-        end as network_fee, 
+            then tdp.observed_fee - (tdp.sell_amount - tdp.observed_fee) / tdp.buy_amount * coalesce(tdp.protocol_fee_amount, 0)
+            else tdp.observed_fee - coalesce(tdp.protocol_fee_amount, 0)
+        end as network_fee_amount, 
         tdp.sell_token as network_fee_token,
         pd.surplus_token_native_price,
         pd.protocol_fee_token_native_price,
@@ -45,8 +45,8 @@ trade_data_processed_with_native_prices as (
     select 
         *,
         protocol_fee_amount * protocol_fee_token_native_price as protocol_fee_native,
-        partner_fee * protocol_fee_token_native_price as partner_fee_native,
-        network_fee * network_fee_token_native_price as network_fee_native
+        partner_fee_amount * protocol_fee_token_native_price as partner_fee_native,
+        network_fee_amount * network_fee_token_native_price as network_fee_native
     from trade_data_processed_with_prices
 )
 

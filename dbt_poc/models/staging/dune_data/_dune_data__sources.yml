@@ -28,15 +28,13 @@ sources:
           A list of transaction hashes for batches excluded from the slippage accounting due to inaccurate prices. 
           At one point this should be a seed. 
           Dune query id: 3490353
-      - name: raw_slippage
+      - name: dune_data__raw_slippage
         description: >
           The already complicated logic for calculating the slippage on CoW Protocol.
           At some point this logic should be integrated in dbt but it will change.
-          This query id in dune is 4059683 and the parameters used: 
-          {blockchain: ethereum, start_time : "2024-09-01 00:00:00", end_time: "2024-09-02 00:00:00", raw_slippage_table_name : raw_slippage_breakdown}
-      - name: cow_protocol_ethereum_batches
+      - name: dune_data__cow_protocol_ethereum_batches
         description: >
-          Query id: 4468789. Filtered on the same timestamp as raw_slippage for now because the data is too big for now.
+          Filtered on the same timestamp as raw_slippage for now because the data is too big for now.
       - name: cow_protocol_ethereum_service_fees
         description: >
           The already complicated logic to flag if a solver should pay a service fee or not for the CoW Protocol.

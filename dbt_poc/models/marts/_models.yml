@@ -87,3 +87,8 @@ models:
       - name: slippage_wei
       - name: slippage_usd
       - name: service_fee
+  - name: fct_data_per_solver_and_accounting_period
+    description: >
+      The data for each accounting period for each solver. 
+      This can be used to do thhe final payouts for the accounting period.
+      TODO: check with Felix the validity of the calculations

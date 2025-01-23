@@ -18,7 +18,7 @@ source as (
         concat('0x', encode(tx_hash::bytea, 'hex')) as tx_hash,
         unwraps
     from
-        {{ source('dune_data', 'cow_protocol_ethereum_batches')}}
+        {{ source('dune_data', 'dune_data__cow_protocol_ethereum_batches')}}
 )
 
 select * from source

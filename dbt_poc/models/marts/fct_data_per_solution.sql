@@ -25,7 +25,7 @@ sender_rewards_all as (
         auction_id,
         tx_hash,
         sum(protocol_fee_amount) as protocol_fee_amount,
-        sum(network_fee) as network_fee
+        sum(network_fee_amount) as network_fee_amount
     from trade_data
     group by 
         auction_id,
@@ -49,7 +49,7 @@ data_per_solution as (
         r.solver_name, 
         r.execution_cost,
         sra.protocol_fee_amount,
-        sra.network_fee,
+        sra.network_fee_amount,
         spt.slippage_wei,
         spt.slippage_usd,
         sf.service_fee as service_fee_enabled

@@ -30,7 +30,7 @@ data_per_trade as (
         qr.sell_token_price as quote_sell_token_price,
         qr.solver as quote_solver,
         td.protocol_fee_token as partner_fee_token, 
-        td.partner_fee as partner_fee_amount,
+        td.partner_fee_amount,
         td.protocol_fee_token_native_price as partner_fee_price, 
         td.partner_fee_native,
         td.protocol_fee_token,
@@ -38,7 +38,7 @@ data_per_trade as (
         td.protocol_fee_token_native_price as protocol_fee_price,
         td.protocol_fee_native,
         pft.protocol_fee_type,
-        td.network_fee as network_fee_amount,
+        td.network_fee_amount,
         td.network_fee_token_native_price as network_fee_price,
         td.network_fee_native
         -- environment. Ask for access to the staging db

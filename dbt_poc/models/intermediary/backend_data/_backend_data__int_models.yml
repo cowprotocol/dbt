@@ -32,11 +32,9 @@ models:
   - name: int_backend_data__order_data
     description: >
       join between the order and jit order tables. 
-      Is used in the calculations for the protocol and partner fees - this could be optimised? 
   - name: int_backend_data__trade_data_unprocessed
     description: >
       Joins settlents, settlements scores, trades, order data, order executino, and app data! 
-      Is used in the calculations for the protocol and partner fees - this could be optimised? 
     data_tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
           column_list: ["auction_id", "order_uid"]
