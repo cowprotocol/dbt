@@ -16,10 +16,6 @@ slippage_per_transaction as (
     select * from {{ref('int_dune_data__slippage_per_transaction')}}
 ),
 
-service_fees as (
-    select * from {{ref('stg_dune_data__cow_protocol_ethereum_service_fees')}}
-),
-
 sender_rewards_all as (
     select 
         auction_id,
@@ -40,7 +36,7 @@ data_per_solution as (
         r.block_deadline,
         r.tx_hash,
         r.solver,
-        r.batch_reward,
+        r.batch_reward_wei,
         r.is_winner,
         r.winning_score,
         r.reference_score,
@@ -51,8 +47,7 @@ data_per_solution as (
         sra.protocol_fee_amount,
         sra.network_fee_amount,
         spt.slippage_wei,
-        spt.slippage_usd,
-        sf.service_fee as service_fee_enabled
+        spt.slippage_usd
     from 
         rewards r
     left join 
@@ -65,10 +60,6 @@ data_per_solution as (
         slippage_per_transaction spt 
     on
         r.tx_hash = spt.tx_hash
-    left join 
-        service_fees sf 
-    on 
-        r.solver_name = sf.solver_name
 )
 
 select * from data_per_solution

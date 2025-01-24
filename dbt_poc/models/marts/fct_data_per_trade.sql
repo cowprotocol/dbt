@@ -33,6 +33,7 @@ data_per_trade as (
         td.partner_fee_amount,
         td.protocol_fee_token_native_price as partner_fee_price, 
         td.partner_fee_native,
+        td.partner_fee_recipient,
         td.protocol_fee_token,
         td.protocol_fee_amount, 
         td.protocol_fee_token_native_price as protocol_fee_price,

@@ -36,8 +36,8 @@ join_datasets as (
 
     where tx_hash != tx_hash_old
     or block_number != block_number_old
-    -- or partner_fee_amount != partner_fee_old PROBLEM on some we have 0 in our data, and in other the old data rounds up
-    -- or protocol_fee_amount != protocol_fee_old PROBLEM this is very close between our calculation and old data, seems like rounding error ? 
+    -- or partner_fee_amount != partner_fee_old PROBLEM TODO on some we have 0 in our data, and in other the old data rounds up
+    -- or protocol_fee_amount != protocol_fee_old PROBLEM TODO this is very close between our calculation and old data, seems like rounding error ? 
     or protocol_fee_type != protocol_fee_kind_old 
     -- or protocol_fee_native != protocol_fee_native_price_old PROBLEM THIS is COMPLETELY WRONG
     or protocol_fee_token != protocol_fee_token_old

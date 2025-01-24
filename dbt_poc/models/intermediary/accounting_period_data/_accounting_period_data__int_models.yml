@@ -3,4 +3,7 @@ version: 2
 models:
   - name: int_accounting_period_data__conversion_rates
     description: >
-      For each accounting period and block number, the conversion rate from native to cow
+      For each accounting period and block number, the conversion rate from native to cow.
+      Accounting periods are from Tuesdays 00:00 (inclusive) to Tuesday 00:00 (exclusive). 
+      On ethereum (i.e. with second granularity) it can be written as from Tuesdays 00:00:00 to Monday 23:59:59. 
+      This should also work on chains like arbitrum with multiple blocks per second. Not sure if there are compatible chains with e.g. millisecond time stamps.

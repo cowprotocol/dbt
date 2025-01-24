@@ -10,6 +10,12 @@ block_timestamp as (
     select 
         *
     from {{ref('stg_dune_data__block_timestamp')}}
+), 
+
+service_fee as (
+    select 
+        *
+    from {{ref('stg_dune_data__dune_data__service_fee_tracker')}}
 )
 
 select 

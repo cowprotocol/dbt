@@ -49,7 +49,7 @@ select
     solver,
     is_settled_in_time,
     execution_cost,
-    capped_reward as batch_reward, -- ask Felix if this is correct naming
+    capped_reward as batch_reward_wei, -- ask Felix if this is correct naming
     reward_target,
     solver_name,
     max_score as winning_score,

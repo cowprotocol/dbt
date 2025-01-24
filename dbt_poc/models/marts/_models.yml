@@ -15,7 +15,7 @@ models:
         data_tests:
           - unique:
               severity: warn
-      - name: batch_reward
+      - name: batch_reward_wei
         description: either a positive, null or negative reward associated with the auction and the solver
         data_tests: 
           - not_null
@@ -43,7 +43,7 @@ models:
       Most of the time, an auction_id should only have one tx_hash, but it could be that a solver settled when he should not (then is_winner is false)
       and we might want in the future to allow for multiple solutions per auction.
       We can use this table as a basis to know which solver to pay or penalise, 
-      as well as the protocol feess, networks fees, execution costs (still TODO), slippage, and weather a service fee has to be charged.
+      as well as the protocol feess, networks fees, execution costs (still TODO), and slippage.
     data_tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
           column_list: ["tx_hash", "auction_id"] 
@@ -86,7 +86,6 @@ models:
       - name: network_fee
       - name: slippage_wei
       - name: slippage_usd
-      - name: service_fee
   - name: fct_data_per_solver_and_accounting_period
     description: >
       The data for each accounting period for each solver. 
