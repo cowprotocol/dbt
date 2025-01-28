@@ -1,5 +1,6 @@
 # Data marts are the final models, and often a join between multiple data sources so we name them by their type: facts (fct) or dimensions (dim)
 #Fact tables capture the quantitative essence of business events – sales, clicks, shipments. Dimension tables provide the crucial context – who, what, where, when
+# all data marts (unless specified otherwise are in atoms of the token (eg wei not eth))
 version: 2
 
 models:
@@ -15,7 +16,7 @@ models:
         data_tests:
           - unique:
               severity: warn
-      - name: batch_reward_wei
+      - name: batch_reward_native
         description: either a positive, null or negative reward associated with the auction and the solver
         data_tests: 
           - not_null
@@ -24,12 +25,12 @@ models:
       Data for each trades that can not be derived from onchain information. 
       A trade is an execution of an order. There are partially fillable orders, so one order can be executed in multiple times.
       It is also the name of the trade events that are on-chain.
-      network_fee_amount and other amounts are in the token (not WEI)
+      network_fee_amount and other amounts are in the token (not native)
       TODO: check why i have so many duüplicates
       TODO Tests: 
        - tx_hash and order_uid unique combo.
        - protocol_fee_amount should not be above 1 percent of buy amount for buy order or sell amount of sell order (in the trades table for amounts, and type of order in the order table)
-       - network_fee_amount * network_fee_price should not be below minus 10e12 WEI
+       - network_fee_amount * network_fee_price should not be below minus 10e12 native
        - if there is a partner_fee, there should always be a protocol_fee
        - order_uid, tx_hash, auction_id, block_number, solver, network_fee_amount, network_fee_price not null
        - test if is_eligeable_for_quote_rewards is true then needs to have a quote_solver
@@ -84,9 +85,12 @@ models:
       - name: solver_name
       - name: protocol_fee
       - name: network_fee
-      - name: slippage_wei
+      - name: slippage_native
       - name: slippage_usd
   - name: fct_data_per_solver_and_accounting_period
     description: >
       The data for each accounting period for each solver. 
-      This can be used to do thhe final payouts for the accounting period.
+  - name: fct_accounting_period_transfer
+    description: >
+      The actual transfers in cow and native token per solver per accounting period.
+      There can be up to two transfers per solver (one in cow and one in the native token)

@@ -8,7 +8,7 @@ source as (
         replace(NULLIF(replace(replace(slippage_atoms::text, '"', ''), '\', ''), 'null'), '', '')::NUMERIC AS slippage_atoms,
         slippage_type, 
         slippage_usd,
-        replace(NULLIF(replace(replace(slippage_wei::text, '"', ''), '\', ''), 'null'), '', '')::NUMERIC AS slippage_wei,
+        replace(NULLIF(replace(replace(slippage_wei::text, '"', ''), '\', ''), 'null'), '', '')::NUMERIC AS slippage_native,
         concat('0x', encode(token_address::bytea, 'hex')) as token_address,
         concat('0x', encode(tx_hash::bytea, 'hex')) as tx_hash
     from

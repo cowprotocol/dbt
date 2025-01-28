@@ -49,7 +49,7 @@ select
     solver,
     is_settled_in_time,
     execution_cost,
-    capped_reward as batch_reward_wei,
+    capped_reward as batch_reward_native,
     reward_target,
     solver_name,
     max_score as winning_score,

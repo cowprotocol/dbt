@@ -36,7 +36,7 @@ data_per_solution as (
         r.block_deadline,
         r.tx_hash,
         r.solver,
-        r.batch_reward_wei,
+        r.batch_reward_native,
         r.is_winner,
         r.winning_score,
         r.reference_score,
@@ -46,7 +46,7 @@ data_per_solution as (
         r.execution_cost,
         sra.protocol_fee_amount,
         sra.network_fee_amount,
-        spt.slippage_wei,
+        spt.slippage_native,
         spt.slippage_usd
     from 
         rewards r
