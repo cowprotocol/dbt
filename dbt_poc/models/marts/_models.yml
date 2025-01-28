@@ -90,4 +90,3 @@ models:
     description: >
       The data for each accounting period for each solver. 
       This can be used to do thhe final payouts for the accounting period.
-      TODO: check with Felix the validity of the calculations

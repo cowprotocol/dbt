@@ -43,6 +43,7 @@ sources:
           True flag if the service fee is activated, and the cow rewards should be reduced by 15%.
           For certain solvers in the cow DAO bonding pool, after 6 months they start paying a service fee. 
           At some point maybe this logic should be changed, probably we should have a table with a list of solvers and when they entered the DAO.
+          TODO for automation: review how to get the relevant data by modifying the query. Also joining after just on solver name: what if a solver changes name? 
       - name : dune_data__orders_old
         description: the old way of getting order data. Is only used to compare with our results
       - name: dune_data__block_timestamp
@@ -51,3 +52,4 @@ sources:
         description: >
           the cow conversion rate for thhe ethereum blockchain for a certain accounting period
           At the moment, it is only for the period we have data for (November 22)
+          TODO later, for the automation we need to rethink the query, especially how to get the start time and end time of the accounting period inside of the query.

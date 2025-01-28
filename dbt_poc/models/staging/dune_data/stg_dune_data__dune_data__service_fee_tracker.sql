@@ -6,8 +6,8 @@ source as (
         service_fee, 
         concat('0x', encode(solver::bytea, 'hex')) as solver_address,
         solver_name, 
-        start_time,
-        end_time
+        cast(start_time as timestamp),
+        cast(end_time as timestamp)
     from
         {{ source('dune_data', 'dune_data__service_fee_tracker')}}
 )
