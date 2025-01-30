@@ -2,4 +2,10 @@ version: 2
 
 seeds:
   - name: full_bonding_pools
-  
+  - name: protocol_fees_config
+    description: >
+      The information on which address to send the protocol fees to, 
+      as well as how much the partner fee tax is, and if a partner has a reduced tax rate.
+      At the moment, we have only one chain but more will be added, 
+      and then downstream models might need to be tweeked.
+      Info where to find the values: https://github.com/cowprotocol/solver-rewards/blob/97cd3d4fb8d86232b3f65f7183f64a4b96d1e680/src/config.py#L105

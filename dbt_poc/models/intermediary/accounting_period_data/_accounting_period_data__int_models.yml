@@ -7,3 +7,8 @@ models:
       Accounting periods are from Tuesdays 00:00 (inclusive) to Tuesday 00:00 (exclusive). 
       On ethereum (i.e. with second granularity) it can be written as from Tuesdays 00:00:00 to Monday 23:59:59. 
       This should also work on chains like arbitrum with multiple blocks per second. Not sure if there are compatible chains with e.g. millisecond time stamps.
+  - name : int_accounting_period_data__partner_and_protocol_fees
+    description: >
+      The calculation to find the actual transfer that need to be made for the partner and protocol fees.
+      This is kept as a separate view because it might be interesting to be able to see all the columns that are used for the calculation.
+      But, for the final data mart we only select a few columns to make it easier to use daily.

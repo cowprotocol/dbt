@@ -64,7 +64,7 @@ sum_cow_rewards_and_fees as (
     from sum_individual_rewards_and_fees
 ),
 
-service_fee as (
+service_fee_amount_cow as (
     select 
         *,
         case 
@@ -80,17 +80,19 @@ service_fee as (
 
 cow_with_service_fee as (
     select *,
-    total_cow_reward - service_fee_amount_cow as total_cow_reward_including_fee
-    from service_fee
+    total_cow_reward - service_fee_amount_cow as total_cow_reward_including_fee,
+    (total_cow_reward - service_fee_amount_cow) * conversion_rate_cow_to_native + total_native_reward as total_native_balance
+    from service_fee_amount_cow
 ),
 
 sum_cow_rewards_and_fees_with_service_fee_and_overdraft as (
     select 
         *,
-        case 
-            when ( total_cow_reward_including_fee * conversion_rate_cow_to_native + total_native_reward) < 0 then true
-       	    else false
-      	end as overdraft
+        (total_native_balance < 0) as overdraft,
+        case  
+            when total_native_balance < 0 then total_native_balance
+       	    else 0
+      	end as overdraft_amount
     from cow_with_service_fee
 )
 
@@ -110,7 +112,6 @@ select
     service_fee_enabled,
     total_cow_reward,
     service_fee_amount_cow,
-    overdraft
+    overdraft,
+    overdraft_amount
 from sum_cow_rewards_and_fees_with_service_fee_and_overdraft
-
-
