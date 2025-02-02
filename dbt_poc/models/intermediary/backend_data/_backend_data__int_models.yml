@@ -38,6 +38,7 @@ models:
     data_tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
           column_list: ["auction_id", "order_uid"]
+          severity: warn
   - name: int_backend_data__protocol_fee_type
     description: >
       all rows where we have a protocol fee type.

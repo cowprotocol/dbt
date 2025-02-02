@@ -10,6 +10,7 @@ source as (
         coalesce((string_to_array(trim(both '{}' from protocol_fee_amounts), ','))[1]::numeric, 0) as first_protocol_fee_amount,
         coalesce((string_to_array(trim(both '{}' from protocol_fee_amounts), ','))[2]::numeric, 0) as second_protocol_fee_amount,
         executed_fee_token
+        -- todo why do we not use the protocol_fee_tokens columns from this table to identify the tokens? 
     from
         {{ source('backend_data_aurelie', 'backend_data__order_execution')}}
 ),

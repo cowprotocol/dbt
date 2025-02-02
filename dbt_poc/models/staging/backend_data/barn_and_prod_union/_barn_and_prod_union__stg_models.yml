@@ -1,0 +1,7 @@
+# These models are simply to join the barn and prod datsets. 
+# todo more description about these datasets
+
+version: 2
+
+models:
+  - name: stg_backend_data__app_data
