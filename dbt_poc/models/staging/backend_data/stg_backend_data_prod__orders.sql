@@ -4,7 +4,7 @@ source as (
     select 
         *
     from
-        {{ source('backend_data_aurelie', 'backend_data__orders')}}
+        {{ source('backend_data_aurelie', 'backend_data_prod__orders')}}
 )
 
 select * from source

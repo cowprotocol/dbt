@@ -9,7 +9,7 @@ source as (
         buy_amount,
         fee_amount
     from
-        {{ source('backend_data_aurelie', 'backend_data__trades')}}
+        {{ source('backend_data_aurelie', 'backend_data_prod__trades')}}
 )
 
 select * from source

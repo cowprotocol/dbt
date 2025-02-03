@@ -5,3 +5,11 @@ version: 2
 
 models:
   - name: stg_backend_data__app_data
+  - name: stg_backend_data__auction_prices
+  - name: stg_backend_data__fee_policies
+  - name: stg_backend_data__jit_orders
+  - name: stg_backend_data__order_quotes
+  - name: stg_backend_data__orders
+  - name: stg_backend_data__settlement_observations
+  - name: stg_backend_data__settlement_scores
+  - name: stg_backend_data__trades
