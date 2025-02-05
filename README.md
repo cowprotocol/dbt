@@ -23,5 +23,3 @@ This repository uses dbt as a tool to transform the data inside of the cow analy
     
 4. run dbt   
    ``` dbt build --debug ``` (optional e.g: --select stg_backend_data__competition_auctions)
-
-test
