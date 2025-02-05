@@ -2,10 +2,10 @@ dbt_poc:
   outputs:
     analytics_postgres:
       type: postgres
-      host: cow-analytics-db.cgabamo3x0wl.eu-central-1.rds.amazonaws.com
+      host: "{{ env_var('ANALYTICS_URL') }}" 
       port: 5432
-      user: solver_slippage_readonly
+      user: "{{ env_var('ANALYTICS_USER') }}"  
       password: "{{ env_var('ANALYTICS_PASSWORD') }}"
-      dbname: solver_slippage
-      schema: aurelie
+      dbname: "{{ env_var('ANALYTICS_DB_NAME') }}"  
+      schema: "{{ env_var('ANALYTICS_SCHEMA') }}" 
   target: analytics_postgres  

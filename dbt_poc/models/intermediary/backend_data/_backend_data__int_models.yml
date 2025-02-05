@@ -35,6 +35,11 @@ models:
   - name: int_backend_data__trade_data_unprocessed
     description: >
       Joins settlents, settlements scores, trades, order data, order executino, and app data! 
+      Purpose: have a list of all trades and have additional info.
+      This could be by first setting up a trades table with unique
+      Then gets order information (what tokens are traded)
+      Then add info about the trade (amounts traded, related to execution, protocol fee thhat was charged)
+      Then info about the settlement (execution costs, auction id, tx hash)
     data_tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
           column_list: ["auction_id", "order_uid"]
@@ -45,13 +50,14 @@ models:
       The protocol fee is the smallest application_order and partner_fee is largest. This is why we keep the first row only.
     data_tests:  
       - dbt_expectations.expect_compound_columns_to_be_unique:
-          column_list: ["auction_id", "order_uid"]
+          column_list: ["auction_id", "order_uid"] 
     columns: 
       - name: protocol_fee_type
+        description: In barn environment sometimes this value is equal to volume. This looks like it is resulting from testing in barn. In prod this should never be the case. 
         data_tests: 
           - accepted_values:
-              values: ['priceimprovement', 'surplus', null] #todo ask felix, volumn is also founs in this table. Can this be a protocol fee type? 
-              severity: warn #todo can delete this once we figure out the point above
+              values: ['priceimprovement', 'surplus', null] 
+              severity: warn
   - name: int_backend_data__price_data
     columns:
       - name: surplus_token_native_price
