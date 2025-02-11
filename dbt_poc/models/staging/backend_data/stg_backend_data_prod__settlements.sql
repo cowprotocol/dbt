@@ -10,7 +10,7 @@ source as (
         tx_nonce,
         auction_id
     from
-        {{ source('backend_data', 'settlements')}}
+        {{ source('backend_data_aurelie', 'backend_data_prod__settlements')}}
 )
 
 select * from source
