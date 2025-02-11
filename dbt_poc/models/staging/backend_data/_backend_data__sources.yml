@@ -1,19 +1,39 @@
 version: 2
 
-sources:
-  - name: backend_data
-    schema: temp_backend_db_dump
-    description: >
-      This is a temporary source that needs to be replaced by the actual data dump we will do:
-      We will periodically upload new data from the backend db to the analytics db. 
-      When we do this, we need to make sure that there is a column (named updated_at for example)
-      which indicates when the row was uploaded to our analytics database.
-      Then, we can use this column to incrementaly load the data inside of the staging model
-      and make follow up models incremental too if we want. 
+sources:  
+  - name: backend_data_aurelie  
+    schema: aurelie
+    description: > 
+      This is a temporary source that needs to be replaced by the actual data dump (like for the temp_backend_db_dump schema).
+      This data is temporarily under the schema aurelie because I did not have write access to the temp_backend_db_dump schema
+      when doing a partial data synch from the backend db to the analytics db with dune synch v2.
     tables:
-      - name: competition_auctions
+      - name: backend_data_prod__trades
+        description: Contains the different trades for each block
+      - name: backend_data_barn__trades
+        description: same as the prod data but from the barn (staging) backend database
+      - name: backend_data_prod__orders
+      - name: backend_data_barn__orders
+      - name: backend_data_prod__jit_orders
+      - name: backend_data_barn__jit_orders
+      - name: backend_data_prod__order_quotes
+      - name: backend_data_barn__order_quotes
+      - name: backend_data_prod__order_execution
+      - name: backend_data_barn__order_execution
+      - name: backend_data_prod__app_data
+      - name: backend_data_barn__app_data
+      - name: backend_data_prod__settlement_scores
+      - name: backend_data_barn__settlement_scores
+      - name: backend_data_prod__settlement_observations
+      - name: backend_data_barn__settlement_observations
+      - name: backend_data_prod__auction_prices
+      - name: backend_data_barn__auction_prices
+      - name: backend_data_prod__fee_policies
+      - name: backend_data_barn__fee_policies
+      - name: backend_data_prod__competition_auctions
+      - name: backend_data_barn__competition_auctions
         description: Contains the deadline (in block number) for each auction_id
-      - name: proposed_solutions
+      - name: backend_data_prod__proposed_solutions
         description: >
           table computed by the autopilot listing all the proposed solution of the solvers.
           We also which solver won for each auction and the score of each proposed solution.
@@ -34,8 +54,9 @@ sources:
           - name: score
             data_tests:
               - not_null
-          - name: is_winner                                                
-      - name: settlements
+          - name: is_winner          
+      - name: backend_data_barn__proposed_solutions
+      - name: backend_data_prod__settlements
         description: >
           For each auction, we know who (solver) settled the auction, how (tx_hash), and when (block_number)
         columns:
@@ -50,35 +71,5 @@ sources:
               - not_null
           - name: block_number
             data_tests:
-              - not_null      
-  
-  - name: backend_data_aurelie  
-    schema: aurelie
-    description: > 
-      This is a temporary source that needs to be replaced by the actual data dump (like for the temp_backend_db_dump schema).
-      This data is temporarily under the schema aurelie because I did not have write access to the temp_backend_db_dump schema
-      when doing a partial data synch from the backend db to the analytics db with dune synch v2.
-    tables:
-      - name: backend_data_prod__trades
-        description: Contains the different trades for each block
-      - name: backend_data_barn__trades
-        description: same as the prod data but from the barn (staging) backend database
-      - name: backend_data_prod__orders
-      - name: backend_data_barn__orders
-      - name: backend_data_prod__jit_orders
-      - name: backend_data_barn__jit_orders
-      - name: backend_data_prod__order_quotes
-      - name: backend_data_barn__order_quotes
-      - name: backend_data_prod__order_execution
-      - name: backend_data_prod__app_data
-      - name: backend_data_barn__app_data
-      - name: backend_data_prod__settlement_scores
-      - name: backend_data_barn__settlement_scores
-      - name: backend_data_prod__settlement_observations
-      - name: backend_data_barn__settlement_observations
-      - name: backend_data_prod__auction_prices
-      - name: backend_data_barn__auction_prices
-      - name: backend_data_prod__fee_policies
-      - name: backend_data_barn__fee_policies
-
-                                      
+              - not_null   
+      - name: backend_data_barn__settlements

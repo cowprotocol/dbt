@@ -11,7 +11,7 @@ source as (
         price_values,
         surplus_capturing_jit_order_owners
     from
-        {{ source('backend_data', 'competition_auctions')}}
+        {{ source('backend_data_aurelie', 'backend_data_barn__competition_auctions')}}
         
 )
 
