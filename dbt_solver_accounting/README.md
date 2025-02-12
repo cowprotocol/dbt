@@ -15,12 +15,9 @@ This project uses dbt as a tool to transform the data inside of the cow analytic
 4. load the environmental variables  
    ``` export $(cat .env | xargs)```
 
-3. navigate to the folder where the dbt models and profiles are  
-    ```cd dbt_poc/```
-
-4. Install dbt pacakages  
+5. Install dbt pacakages  
     ```dbt deps```
     
-4. run dbt   
+6. run dbt   
    ``` dbt build --debug ``` (optional e.g: --select stg_backend_data__competition_auctions)
 test
