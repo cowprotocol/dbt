@@ -41,8 +41,8 @@ data_per_trade as (
         pft.protocol_fee_type,
         td.network_fee_amount,
         td.network_fee_token_native_price as network_fee_price,
-        td.network_fee_native
-        -- environment. Ask for access to the staging db
+        td.network_fee_native,
+        td.environment
     from 
         trade_data as td 
     left join 

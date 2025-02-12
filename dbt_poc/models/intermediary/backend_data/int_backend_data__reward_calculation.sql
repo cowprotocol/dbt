@@ -54,7 +54,8 @@ reward_calculations_capped as (
             when uncapped_reward > 12 * 10^15 then 12 * 10^15
             when uncapped_reward < -10 * 10^15 then -10 * 10^15
             else uncapped_reward
-        end as capped_reward
+        end as capped_reward,
+        environment
     from 
         reward_calculations_uncapped
 )

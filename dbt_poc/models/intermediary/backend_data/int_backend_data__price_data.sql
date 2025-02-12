@@ -21,7 +21,8 @@ price_data as (
         tdp.order_uid,
         ap_surplus.price / 1e18 as surplus_token_native_price,
         ap_protocol.price / 1e18 as protocol_fee_token_native_price,
-        ap_sell.price / 1e18 as network_fee_token_native_price
+        ap_sell.price / 1e18 as network_fee_token_native_price,
+        tdp.environment
     from trade_data_processed as tdp 
     left outer join auction_prices as ap_sell -- contains price: sell token
         on tdp.auction_id = ap_sell.auction_id 
