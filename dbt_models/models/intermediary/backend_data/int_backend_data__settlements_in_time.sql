@@ -17,7 +17,7 @@ competition_auctions as (
         auction_id,
         block_deadline,
         environment
-    from {{ref('stg_backend_data__competition_auctions2')}}
+    from {{ref('stg_backend_data__competition_auctions')}}
 ),
 
 final as (

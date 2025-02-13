@@ -8,4 +8,3 @@ Other transformations will also be added
 # How to add new transformations
 Please follow the conventions suggested by dbt labs: https://docs.getdbt.com/best-practices
 Courses on dbt: https://learn.getdbt.com/catalog
-test
