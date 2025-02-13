@@ -15,8 +15,9 @@ with settlements as (
 competition_auctions as (
     select 
         auction_id,
-        block_deadline
-    from {{ref('stg_backend_data__competition_auctions')}}
+        block_deadline,
+        environment
+    from {{ref('stg_backend_data__competition_auctions2')}}
 ),
 
 final as (
@@ -27,7 +28,8 @@ final as (
         case  
             when s.block_number <= (ca.block_deadline + 1) and s.tx_hash is not null then TRUE -- this includes a grace period of one block for settling a batch
             else FALSE
-        end as is_settled_in_time 
+        end as is_settled_in_time,
+        ca.environment
     from 
         settlements s
     right join 

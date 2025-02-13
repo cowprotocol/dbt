@@ -27,7 +27,8 @@ trade_data_processed as (
             when partner_fee_recipient is not null then second_protocol_fee_amount
             else 0
         end as partner_fee_amount,
-        surplus_token as protocol_fee_token
+        surplus_token as protocol_fee_token,
+        environment
     from trade_data_unprocessed
 )
 

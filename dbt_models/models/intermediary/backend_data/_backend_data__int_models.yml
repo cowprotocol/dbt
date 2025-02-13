@@ -6,6 +6,12 @@ models:
       Includes all the auctions from the competition_auction table (so normally all of our auctions).
       We add two new columns that indicate if the auction is settled (tx_has exists) and if it is settled on time.
       We include a grace period (see model code for the exact amount)
+    columns:
+      - name: environment
+        data_tests:
+          - not_null:
+              severity: warn
+
   - name: int_backend_data__two_highest_scores
     description: > 
       Model that simply adds two new columns to the proposed solutions:
@@ -14,9 +20,19 @@ models:
       All the auctions and their associated proposed solutions are still present.
       In case the logic for calculating the reward for the auction changes and is not
       based solely on the two highest scores for the auction, then we need to change this model.
+    columns:
+      - name: environment
+        data_tests:
+          - not_null:
+              severity: warn  
   - name: int_backend_data__reward_calculation
     description: For each auction, we calculate the final rewards, wethere the auction is settled or not, on time or not. 
       The reward is only given if the solver settled on time and if they were declared the winner, otherwise they are penalised.
+    columns:
+      - name: environment
+        data_tests:
+          - not_null:
+              severity: warn  
   - name: int_backend_data__trade_with_tx_hash
     description: >
       For each trade/order_uid we have the corresponding transaction hash. 
@@ -25,13 +41,29 @@ models:
       - assert_always_smaller_than:
           smaller_column: trade_log_index
           bigger_column: settlement_log_index
+    columns:
+      - name: environment
+        data_tests:
+          - not_null:
+              severity: warn
   - name: int_backend_data__orders_with_winning_quotes
     description: > 
       selection of all the order uids that have winning quotes. We can sum them per solver to get the quote rewards later.
       ask Felix TODO if it is normal to have so little order uids with winning quotes
+    columns:
+      - name: environment
+        data_tests:
+          - not_null:
+              severity: warn  
   - name: int_backend_data__order_data
     description: >
       join between the order and jit order tables. 
+    columns:
+      - name: environment
+        data_tests:
+          - not_null:
+              severity: warn  
+
   - name: int_backend_data__trade_data_unprocessed
     description: >
       Joins settlents, settlements scores, trades, order data, order executino, and app data! 
@@ -44,6 +76,23 @@ models:
       - dbt_expectations.expect_compound_columns_to_be_unique:
           column_list: ["auction_id", "order_uid"]
           severity: warn
+    columns:
+      - name: environment
+        data_tests:
+          - not_null:
+              severity: warn  
+  - name: int_backend_data__trade_data_processed_with_native_prices
+    columns:  
+      - name: environment
+        data_tests:
+          - not_null:
+              severity: warn
+  - name: int_backend_data__trade_data_processed
+    columns:  
+      - name: environment
+        data_tests:
+          - not_null:
+              severity: warn
   - name: int_backend_data__protocol_fee_type
     description: >
       all rows where we have a protocol fee type.
@@ -58,6 +107,10 @@ models:
           - accepted_values:
               values: ['priceimprovement', 'surplus', null] 
               severity: warn
+      - name: environment
+        data_tests:
+          - not_null:
+              severity: warn
   - name: int_backend_data__price_data
     columns:
       - name: surplus_token_native_price
@@ -65,6 +118,16 @@ models:
           - not_null:
               severity: warn
       - name: network_fee_token_native_price
+        data_tests:
+          - not_null:
+              severity: warn
+      - name: environment
+        data_tests:
+          - not_null:
+              severity: warn
+  - name : int_backend_data__settlements_execution_costs
+    columns: 
+      - name: environment
         data_tests:
           - not_null:
               severity: warn

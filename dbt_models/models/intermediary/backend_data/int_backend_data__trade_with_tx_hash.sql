@@ -44,7 +44,8 @@ trade_settlement_matching as (
         s.tx_from,
         s.tx_nonce,
         s.auction_id,
-        s.execution_cost
+        s.execution_cost,
+        t.environment
     from
         trades t
     inner join

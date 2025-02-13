@@ -26,7 +26,6 @@ sender_rewards_all as (
     group by 
         auction_id,
         tx_hash
-
 ),
 
 data_per_solution as (
@@ -47,7 +46,8 @@ data_per_solution as (
         sra.protocol_fee_amount,
         sra.network_fee_amount,
         spt.slippage_native,
-        spt.slippage_usd
+        spt.slippage_usd,
+        r.environment
     from 
         rewards r
     left join 
