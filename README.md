@@ -15,12 +15,15 @@ This repository uses dbt as a tool to transform the data inside of the cow analy
 4. load the environmental variables  
    ``` export $(cat .env | xargs)```
 
-3. navigate to the folder where the dbt models and profiles are  
+5. navigate to the folder where the dbt models and profiles are  
     ```cd dbt_poc/```
 
-4. Install dbt pacakages  
+6. Install dbt pacakages  
     ```dbt deps```
     
-4. run dbt   
+7. run dbt   
    ``` dbt build --debug ``` (optional e.g: --select stg_backend_data__competition_auctions)
-test
+
+8. Run the isualization Interface
+   ``` dbt docs generate ```
+   ``` dbt docs serve ```
