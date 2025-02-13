@@ -15,7 +15,7 @@ models:
   - name: stg_backend_data__trades
     description: >
       The prod and the barn tables seem to both have the same trades. 
-      ToDO: check with Felix that this is reh right solution: 
+      TODO: check with Felix that this is the right solution: 
       Therefore, the data is deduplicated taking the prod row as a priority 
       if it exists both in prod and barn
   - name: stg_backend_data__competition_auctions2 #todo change this back to stg_backend_data__competition_auctions 
