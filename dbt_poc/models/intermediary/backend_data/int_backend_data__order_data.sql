@@ -22,7 +22,8 @@ order_data as (
         sell_amount,
         buy_amount,
         kind,
-        app_data
+        app_data, 
+        environment
     from o
     union all
     select
@@ -32,7 +33,8 @@ order_data as (
         sell_amount,
         buy_amount,
         kind,
-        app_data
+        app_data,
+        environment
     from jo
 
 )

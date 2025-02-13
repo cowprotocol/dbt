@@ -20,6 +20,7 @@ select
     surplus_max_volume_factor,
     volume_factor,
     price_improvement_factor,
-    price_improvement_max_volume_factor
+    price_improvement_max_volume_factor,
+    environment
 from ranked_data
 where smallest_rank = 1

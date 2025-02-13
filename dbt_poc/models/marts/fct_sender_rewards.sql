@@ -53,5 +53,6 @@ select
     reward_target,
     solver_name,
     max_score as winning_score,
-    second_highest_score as reference_score
+    second_highest_score as reference_score,
+    environment
 from unique_solver_rewards

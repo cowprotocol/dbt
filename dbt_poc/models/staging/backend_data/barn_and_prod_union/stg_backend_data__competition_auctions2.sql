@@ -1,6 +1,5 @@
-{{ config(
-    materialized='table'
-)}}
+
+
 
 with barn as (
     select 

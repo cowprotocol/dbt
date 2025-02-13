@@ -58,7 +58,8 @@ trade_data_unprocessed as (
         end as surplus_token,
         ad.partner_fee_recipient,
         oe.first_protocol_fee_amount,
-        oe.second_protocol_fee_amount
+        oe.second_protocol_fee_amount,
+        t.environment
     from s inner join ss -- contains block_deadline
         on s.auction_id = ss.auction_id
     inner join t -- contains traded amounts
