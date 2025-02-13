@@ -1,3 +1,7 @@
 env_cow_poc/
 .env
 .venv
+target/
+dbt_packages/
+logs/
+.user.yml

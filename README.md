@@ -1,6 +1,5 @@
 # Aim of this repo
-
-This repository uses dbt as a tool to transform the data inside of the cow analytics database.
+This is a collection of dbt projects maintained by the core team of CoW Protocol.
 
 # Local development
 1. create a new python environment  
@@ -16,7 +15,8 @@ This repository uses dbt as a tool to transform the data inside of the cow analy
    ``` export $(cat .env | xargs)```
 
 5. navigate to the folder where the dbt models and profiles are  
-    ```cd dbt_poc/```
+    ```cd dbt_models/```
+    all the dbt related commands need to be run from inside that folder
 
 6. Install dbt pacakages  
     ```dbt deps```
@@ -27,3 +27,4 @@ This repository uses dbt as a tool to transform the data inside of the cow analy
 8. Run the isualization Interface
    ``` dbt docs generate ```
    ``` dbt docs serve ```
+   
