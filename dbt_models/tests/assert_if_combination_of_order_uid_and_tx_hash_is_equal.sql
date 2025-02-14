@@ -10,13 +10,21 @@ with_tx_hash as (
         tx_hash
     from {{ ref('int_backend_data__trade_with_tx_hash') }}
 ),
+not_partially_fillable as (
+	select 
+        distinct uid 
+	from {{ ref('stg_backend_data__orders') }}  
+	where partially_fillable is false
+),
 matching_order_uids as (
-    -- find order_uids that exist in both tables
+    -- find order_uids that exist in both tables but that are not partially fillable
     select distinct
         unprocessed.order_uid
     from unprocessed
     inner join with_tx_hash
     on unprocessed.order_uid = with_tx_hash.order_uid
+    inner join not_partially_fillable 
+    on unprocessed.order_uid = not_partially_fillable.uid
 )
 -- check if the tx_hash matches for the same order_uid
 select 
