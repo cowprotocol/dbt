@@ -74,7 +74,7 @@ models:
       Then info about the settlement (execution costs, auction id, tx hash)
     data_tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
-          column_list: ["auction_id", "order_uid"]
+          column_list: ["auction_id", "order_uid", "environment"]
           severity: warn
     columns:
       - name: environment

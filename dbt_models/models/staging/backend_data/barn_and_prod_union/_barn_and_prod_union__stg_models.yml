@@ -34,5 +34,5 @@ models:
     descriptino: TODO, should we add the protocol_fee_tokens?? and if so, how to clean this column?
     data_tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
-          column_list: ["auction_id", "order_uid"]
+          column_list: ["auction_id", "order_uid", "environment"]
           severity: warn
