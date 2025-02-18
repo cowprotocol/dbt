@@ -15,11 +15,11 @@ prod as (
         'prod' as environment
     from {{ref('stg_backend_data_prod__app_data')}}
 ),
-
+-- todo: check deduplicate
 final as (
     select *
     from barn
-    union all
+    union distinct
     select *
     from prod
 

@@ -59,15 +59,18 @@ trade_data_unprocessed as (
         ad.partner_fee_recipient,
         oe.first_protocol_fee_amount,
         oe.second_protocol_fee_amount,
-        t.environment
+        s.environment
     from s inner join ss -- contains block_deadline
         on s.auction_id = ss.auction_id
+        and s.environment = ss.environment
     inner join t -- contains traded amounts
         on s.block_number = t.block_number -- given the join that follows with the order execution table, this works even when multiple txs appear in the same block
     inner join od -- contains tokens and limit amounts
         on t.order_uid = od.uid
+        and t.environment = od.environment
     inner join oe -- contains executed fee
         on t.order_uid = oe.order_uid 
+        and t.environment = oe.environment
         and s.auction_id = oe.auction_id
     left outer join ad -- contains full app data
         on od.app_data = ad.contract_app_data

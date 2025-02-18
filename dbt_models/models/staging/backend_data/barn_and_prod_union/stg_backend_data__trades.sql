@@ -23,7 +23,8 @@ with_duplicates as (
     select *
     from prod
 
-),
+), -- to do remove the deduplictation but do a union distinct without the tags because the table are the same in prod and barn 
+
 
 ranked_data as (
     select 

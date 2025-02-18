@@ -33,7 +33,7 @@ join_datasets as (
     join old_order_data ood 
     on ood.auction_id_old = fdpt.auction_id
     and ood.order_uid_old = fdpt.order_uid
-
+ -- and environments
     where tx_hash != tx_hash_old
     or block_number != block_number_old
     -- or partner_fee_amount != partner_fee_old PROBLEM TODO on some we have 0 in our data, and in other the old data rounds up
