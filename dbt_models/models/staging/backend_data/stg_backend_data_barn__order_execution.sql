@@ -2,7 +2,7 @@ with
 
 source as (
     select 
-        order_uid,
+        convert_to(order_uid, 'utf8')::bytea as order_uid,
         auction_id,
         reward,
         executed_fee,

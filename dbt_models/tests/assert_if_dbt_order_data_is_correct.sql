@@ -4,21 +4,21 @@ old_order_data as (
     select 
         auction_id as auction_id_old, 
         block_number as block_number_old, 
-        concat('0x', encode(order_uid::bytea, 'hex')) as order_uid_old,
+        concat('0x', encode(order_uid::bytea, 'hex'))::bytea as order_uid_old,
         replace(nullif(replace(replace(partner_fee::text, '"', ''), '\', ''), 'null'), '', '')::numeric as partner_fee_old,
-        concat('0x', encode(partner_fee_recipient::bytea, 'hex')) as partner_fee_recipient_old,
+        concat('0x', encode(partner_fee_recipient::bytea, 'hex'))::bytea as partner_fee_recipient_old,
         replace(nullif(replace(replace(protocol_fee::text, '"', ''), '\', ''), 'null'), '', '')::numeric as protocol_fee_old,
         protocol_fee_kind as protocol_fee_kind_old, 
         protocol_fee_native_price as protocol_fee_native_price_old, 
-        concat('0x', encode(protocol_fee_token::bytea, 'hex')) as protocol_fee_token_old,
+        concat('0x', encode(protocol_fee_token::bytea, 'hex'))::bytea as protocol_fee_token_old,
         replace(nullif(replace(replace(quote_buy_amount::text, '"', ''), '\', ''), 'null'), '', '')::numeric as quote_buy_amount_old,
         quote_gas_cost as quote_gas_cost_old, 
         replace(nullif(replace(replace(quote_sell_amount::text, '"', ''), '\', ''), 'null'), '', '')::numeric as quote_sell_amount_old,
         quote_sell_token_price as quote_sell_token_price_old, 
-        concat('0x', encode(quote_solver::bytea, 'hex')) as quote_solver_old,
-        concat('0x', encode(solver::bytea, 'hex')) as solver_old,
+        concat('0x', encode(quote_solver::bytea, 'hex'))::bytea as quote_solver_old,
+        concat('0x', encode(solver::bytea, 'hex'))::bytea as solver_old,
         replace(nullif(replace(replace(surplus_fee::text, '"', ''), '\', ''), 'null'), '', '')::numeric as surplus_fee_old,
-        concat('0x', encode(concat('0x', encode(tx_hash::bytea, 'hex'))::bytea, 'hex')) as tx_hash_old
+        concat('0x', encode(tx_hash::bytea, 'hex'))::bytea as   tx_hash_old
     from {{ source('dune_data', 'dune_data__orders_old')}}
 ),
 

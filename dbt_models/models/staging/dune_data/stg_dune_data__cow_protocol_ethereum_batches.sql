@@ -12,10 +12,10 @@ source as (
         gas_price, 
         gas_used, 
         num_trades, 
-        concat('0x', encode(solver_address::bytea, 'hex')) as solver_address,
+        concat('0x', encode(solver_address::bytea, 'hex'))::bytea as solver_address,
+        concat('0x', encode(tx_hash::bytea, 'hex'))::bytea as tx_hash,
         token_approvals, 
         tx_cost_usd,
-        concat('0x', encode(tx_hash::bytea, 'hex')) as tx_hash,
         unwraps
     from
         {{ source('dune_data', 'dune_data__cow_protocol_ethereum_batches')}}

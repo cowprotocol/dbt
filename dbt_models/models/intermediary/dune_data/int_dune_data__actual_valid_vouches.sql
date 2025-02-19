@@ -1,10 +1,38 @@
 with valid_vouches as (
-    select *
+    select 
+        updated_at, 
+        contract_address, 
+        tx_hash, 
+        "index", 
+        block_time, 
+        block_number, 
+        bonding_pool, 
+        sender, 
+        solver, 
+        pool_address, 
+        pool_name, 
+        initial_funder, 
+        reward_target, 
+        is_vouched
     from {{ref('int_dune_data__valid_vouches')}}
 ),
 
 valid_unvouches as (
-    select *
+    select 
+        updated_at, 
+        contract_address, 
+        tx_hash, 
+        "index", 
+        block_time, 
+        block_number, 
+        bonding_pool, 
+        sender, 
+        solver, 
+        pool_address, 
+        pool_name, 
+        initial_funder, 
+        reward_target, 
+        is_vouched
     from {{ref('int_dune_data__valid_unvouches')}}
 ),
 

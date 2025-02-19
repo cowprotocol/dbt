@@ -4,7 +4,7 @@ source as (
     select 
         block_number,
         log_index,
-        order_uid,
+        convert_to(order_uid, 'utf8')::bytea as order_uid ,
         sell_amount,
         buy_amount,
         fee_amount

@@ -9,7 +9,12 @@
 with 
 
 source as (
-    select *
+    select 
+        updated_at, 
+        convert_to(address, 'utf8')::bytea as address,
+        environment, 
+        "name", 
+        active
     from
         {{ source('dune_data', 'cow_protocol_ethereum_solvers')}}
 )

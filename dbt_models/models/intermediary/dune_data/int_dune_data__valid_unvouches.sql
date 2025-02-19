@@ -1,6 +1,10 @@
+{{ config(
+    materialized='table'
+)}}
+
 with bonding_pool as (
     select *
-    from {{ref('full_bonding_pools')}}
+    from {{ref('stg_full_bonding_pools')}}
 ),
 
 invalidate_vouches as (
@@ -11,7 +15,7 @@ invalidate_vouches as (
 valid_unvouches as (
     select 
         * ,
-        Null as reward_target,
+        convert_to(null, 'utf8')::bytea as reward_target,
         false as is_vouched
     from 
         invalidate_vouches v

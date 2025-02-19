@@ -11,13 +11,13 @@ source as (
     select 
         updated_at,
         contract_address,
-        evt_tx_hash as tx_hash,
+        convert_to(evt_tx_hash, 'utf8')::bytea as tx_hash,
         evt_index as index,
         evt_block_time as block_time,
         evt_block_number as block_number,
-        "bondingPool" as bonding_pool,
-        sender,
-        solver
+        convert_to("bondingPool", 'utf8')::bytea as bonding_pool,
+        convert_to(sender, 'utf8')::bytea as sender,
+        convert_to(solver, 'utf8')::bytea as solver
     from
         {{ source('dune_data', 'VouchRegister_evt_InvalidateVouch')}}
 )

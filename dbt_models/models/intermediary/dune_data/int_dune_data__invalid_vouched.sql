@@ -1,7 +1,7 @@
 with full_bonding_pools as (
     select 
         *
-    from {{ref('full_bonding_pools')}}
+    from {{ref('stg_full_bonding_pools')}}
 ),
 
 vouches as (
