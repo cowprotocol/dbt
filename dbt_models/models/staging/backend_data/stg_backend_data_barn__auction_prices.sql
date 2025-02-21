@@ -3,7 +3,7 @@ with
 source as (
     select 
         auction_id, 
-        convert_to("token", 'utf8')::bytea as "token", 
+        decode(substr("token",3), 'hex') as "token",
         price
     from
         {{ source('backend_data_aurelie', 'backend_data_barn__auction_prices')}}

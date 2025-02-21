@@ -3,7 +3,7 @@ with
 source as (
     select 
         auction_id, 
-        convert_to(order_uid, 'utf8')::bytea as order_uid, 
+        decode(substr(order_uid,3), 'hex') as order_uid,
         application_order, 
         kind, 
         surplus_factor, 

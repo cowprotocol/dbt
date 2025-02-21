@@ -2,13 +2,13 @@ with
 
 source as (
     select 
-        convert_to(order_uid, 'utf8')::bytea as order_uid,
+        decode(substr(order_uid,3), 'hex') as order_uid,
         gas_amount, 
         gas_price, 
         sell_token_price,
         sell_amount, 
         buy_amount, 
-        convert_to(solver, 'utf8')::bytea as solver,
+        decode(substr(solver,3), 'hex') as solver,
         verified
     from
         {{ source('backend_data_aurelie', 'backend_data_barn__order_quotes')}}

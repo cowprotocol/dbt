@@ -4,8 +4,8 @@ source as (
     select 
         block_number,
         log_index,
-        convert_to(solver, 'utf8')::bytea as solver,
-        convert_to(tx_hash, 'utf8')::bytea as tx_hash,
+        decode(substr(solver,3), 'hex') as solver,
+        decode(substr(tx_hash,3), 'hex') as tx_hash,
         tx_from,
         tx_nonce,
         auction_id

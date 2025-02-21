@@ -2,10 +2,10 @@ with
 
 source as (
     select 
-        convert_to(uid, 'utf8')::bytea as uid, 
+        decode(substr(uid,3), 'hex') as uid,
         creation_timestamp, 
-        convert_to(sell_token, 'utf8')::bytea as sell_token, 
-        convert_to(buy_token, 'utf8')::bytea as buy_token, 
+        decode(substr(sell_token,3), 'hex') as sell_token,
+        decode(substr(buy_token,3), 'hex') as buy_token,
         sell_amount, 
         buy_amount, 
         valid_to, 

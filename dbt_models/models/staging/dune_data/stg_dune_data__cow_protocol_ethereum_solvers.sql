@@ -11,7 +11,7 @@ with
 source as (
     select 
         updated_at, 
-        convert_to(address, 'utf8')::bytea as address,
+        address,
         environment, 
         "name", 
         active
