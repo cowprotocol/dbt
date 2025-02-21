@@ -62,7 +62,7 @@ trade_data_unprocessed as (
         s.environment
     from s inner join ss -- contains block_deadline
         on s.auction_id = ss.auction_id
-        and s.environment = ss.environment -- there can be the same auction id in both environments but with different solver as winners (todo ask felix how this is possible)
+        and s.environment = ss.environment 
     inner join t -- contains traded amounts
         on s.block_number = t.block_number -- given the join that follows with the order execution table, this works even when multiple txs appear in the same block
         and s.environment = t.environment
