@@ -6,4 +6,3 @@ models:
   - name: stg_protocol_fees_config
     description: > 
       The seed with the correct columns converted to bytea
-      
