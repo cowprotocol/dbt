@@ -5,7 +5,7 @@ source as (
         auction_id,
         uid,
         id,
-        concat('0x', encode(solver::bytea, 'hex')) as solver,
+        decode(substr(solver,3), 'hex') as solver,
         is_winner,
         score
         -- price_tokens, this column is not used later and it is causing issues in the dune synch because it's a bytea array of binary data

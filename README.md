@@ -24,7 +24,7 @@ This is a collection of dbt projects maintained by the core team of CoW Protocol
 7. run dbt   
    ``` dbt build --debug ``` (optional e.g: --select stg_backend_data__competition_auctions)
 
-8. Run the isualization Interface
+8. Run the visualization Interface
    ``` dbt docs generate ```
    ``` dbt docs serve ```
    

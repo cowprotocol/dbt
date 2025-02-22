@@ -9,7 +9,12 @@
 with 
 
 source as (
-    select *
+    select 
+        updated_at, 
+        address,
+        environment, 
+        "name", 
+        active
     from
         {{ source('dune_data', 'cow_protocol_ethereum_solvers')}}
 )

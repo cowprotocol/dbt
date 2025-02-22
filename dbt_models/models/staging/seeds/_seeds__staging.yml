@@ -1,0 +1,8 @@
+version: 2
+models:
+  - name: stg_full_bonding_pools
+    description: >
+      The seed with the correct columns converted to bytea
+  - name: stg_protocol_fees_config
+    description: > 
+      The seed with the correct columns converted to bytea

@@ -4,7 +4,7 @@ source as (
     select 
         pool_name, 
         service_fee, 
-        concat('0x', encode(solver::bytea, 'hex')) as solver_address,
+        solver as solver_address,
         solver_name, 
         cast(start_time as timestamp),
         cast(end_time as timestamp)

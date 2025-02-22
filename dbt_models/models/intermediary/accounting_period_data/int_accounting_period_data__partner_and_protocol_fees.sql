@@ -9,7 +9,7 @@ data_per_trade as (
 ),
 
 protocol_fee_config as (
-	select * from {{ref('protocol_fees_config')}}
+	select * from {{ref('stg_protocol_fees_config')}}
 	where network = 'mainnet'
 	limit 1
 ),
