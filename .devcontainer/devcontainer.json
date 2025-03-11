@@ -1,0 +1,23 @@
+{
+	"name": "Python with Requirements",
+	"image": "mcr.microsoft.com/devcontainers/python:3.11",  
+	// Only reinstalls requirements when requirements.txt changes inside of virtual env
+	"postCreateCommand": "[ -f .requirements_hash ] && sha256sum -c .requirements_hash || (python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt && sha256sum requirements.txt > .requirements_hash)",
+	
+	// Automatically activate virtual environment in terminal
+	"postStartCommand": "bash -c 'echo \"source .venv/bin/activate\" >> ~/.bashrc && source ~/.bashrc'",
+
+	"features": {
+	  "python": "latest"
+
+	},
+  
+	"customizations": {
+	  "vscode": {
+		"settings": {
+		  "python.defaultInterpreterPath": ".venv/bin/python"
+		}
+	  }
+	}
+  }
+    

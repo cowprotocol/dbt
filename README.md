@@ -2,13 +2,19 @@
 This is a collection of dbt projects maintained by the core team of CoW Protocol.
 
 # Local development
-1. create a new python environment  
+
+## Option A: withouth Dev Container - start here, continue lower
+1.a create a new python environment  
     ``` python3 -m venv .venv ```  
     ``` source .venv/bin/activate```
 
-2. install requirements  
+2.a install requirements  
     ```pip3 install -r requirements.txt```
 
+## Option B: with Dev Container - start here
+1.b open a Dev Container - a virtual env with the right requirements will be automatically created (first time)/loaded (next times)
+
+## Both options: continue here
 3. create a .env file and fill in your credentials like in the .env_example file  
 
 4. load the environmental variables  
