@@ -20,7 +20,7 @@ source as (
         sender,
         solver
     from
-        {{ source('dune_data', 'VouchRegister_evt_Vouch')}} 
+        {{ source('dune_data', 'dune_data__cow_protocol_ethereum_vouches')}} 
 )
 
 select * from source

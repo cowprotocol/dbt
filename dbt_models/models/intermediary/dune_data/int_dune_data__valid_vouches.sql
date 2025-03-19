@@ -9,7 +9,7 @@ with bonding_pool as (
 
 vouches as (
     select *
-    from {{ref('stg_dune_data__vouch')}}
+    from {{ref('stg_dune_data__cow_protocol_ethereum_vouches')}}
 ),
 
 valid_vouches as (
