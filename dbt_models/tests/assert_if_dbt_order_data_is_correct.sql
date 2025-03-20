@@ -5,7 +5,7 @@ old_order_data as (
         auction_id as auction_id_old, 
         block_number as block_number_old, 
         order_uid as order_uid_old,
-        nullif(replace(replace(partner_fee::text, '"', ''), '\', ''), 'null'),::numeric as partner_fee_old,
+        nullif(replace(replace(partner_fee::text, '"', ''), '\', ''), 'null')::numeric as partner_fee_old,
         partner_fee_recipient as partner_fee_recipient_old,
         nullif(replace(replace(protocol_fee::text, '"', ''), '\', ''), 'null')::numeric as protocol_fee_old,
         protocol_fee_kind as protocol_fee_kind_old, 
