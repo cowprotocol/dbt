@@ -9,7 +9,7 @@ with
 
 source as (
     select 
-        replace(nullif(replace(replace(updated_at::text, '"', ''), '\', ''), 'null'), '', '')::timestamp as updated_at,
+        nullif(replace(replace(updated_at::text, '"', ''), '\', ''), 'null')::timestamp as updated_at,
         contract_address,
         evt_tx_hash as tx_hash,
         evt_index as index,

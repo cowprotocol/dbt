@@ -10,7 +10,7 @@ with
 
 source as (
     select 
-        replace(nullif(replace(replace(updated_at::text, '"', ''), '\', ''), 'null'), '', '')::timestamp as updated_at,
+        nullif(replace(replace(updated_at::text, '"', ''), '\', ''), 'null')::timestamp as updated_at,
         address,
         environment, 
         "name", 
