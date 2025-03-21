@@ -38,6 +38,12 @@ models:
       - dbt_expectations.expect_compound_columns_to_be_unique:
           column_list: ["tx_hash", "order_uid"]
           severity: warn
+    columns:
+      - name: protocol_fee_price
+        data_tests:
+          - dbt_expectations.expect_column_values_to_not_be_null:
+              where: "protocol_fee_amount is not null"
+              severity: warn #todo delete this once we fix the reason why the test fails
   - name: fct_data_per_solution
     description: > 
       Data for each auction and solution that has actually been settled. 
