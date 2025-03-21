@@ -68,3 +68,4 @@ sources:
           At the moment, it is only for the period we have data for (November 22)
           TODO later, for the automation we need to rethink the query, especially how to get the start time and end time of the accounting period inside of the query.
           Query id: 4545357
+          

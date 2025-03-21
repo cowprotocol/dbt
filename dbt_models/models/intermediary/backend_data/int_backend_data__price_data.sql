@@ -27,12 +27,15 @@ price_data as (
     left outer join auction_prices as ap_sell -- contains price: sell token
         on tdp.auction_id = ap_sell.auction_id 
         and tdp.sell_token = ap_sell.token
+        and tdp.environment = ap_sell.environment
     left outer join auction_prices as ap_surplus -- contains price: surplus token
         on tdp.auction_id = ap_surplus.auction_id 
         and tdp.surplus_token = ap_surplus.token
+        and tdp.environment = ap_surplus.environment
     left outer join auction_prices as ap_protocol -- contains price: protocol fee token
         on tdp.auction_id = ap_protocol.auction_id 
         and tdp.surplus_token = ap_protocol.token
+        and tdp.environment = ap_protocol.environment
 )
 
 select * from price_data
