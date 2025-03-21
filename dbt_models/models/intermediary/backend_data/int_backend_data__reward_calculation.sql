@@ -30,6 +30,8 @@ reward_calculations_uncapped as (
         settlements s
     on
         th.auction_id = s.auction_id
+    and
+        th.environment = s.environment
 
 ),
 

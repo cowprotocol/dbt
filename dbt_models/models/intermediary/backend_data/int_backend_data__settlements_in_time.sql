@@ -8,7 +8,8 @@ with settlements as (
         tx_hash,
         solver,
         block_number,
-        execution_cost
+        execution_cost,
+        environment
     from {{ref('int_backend_data__settlements_execution_costs')}}
 ),
 
@@ -28,14 +29,15 @@ final as (
         case  
             when s.block_number <= (ca.block_deadline + 1) and s.tx_hash is not null then TRUE -- this includes a grace period of one block for settling a batch
             else FALSE
-        end as is_settled_in_time,
-        ca.environment
+        end as is_settled_in_time
     from 
         settlements s
     right join 
         competition_auctions ca
     on 
         s.auction_id = ca.auction_id
+    and 
+        s.environment = ca.environment
 )
 
 select * from final

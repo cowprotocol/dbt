@@ -39,6 +39,7 @@ trade_data_processed_with_prices as (
     from trade_data_processed as tdp 
     inner join price_data as pd
         on tdp.auction_id = pd.auction_id 
+        and tdp.environment = pd.environment
         and tdp.order_uid = pd.order_uid
 ),
 

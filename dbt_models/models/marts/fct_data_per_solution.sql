@@ -19,12 +19,14 @@ slippage_per_transaction as (
 sender_rewards_all as (
     select 
         auction_id,
+        environment,
         tx_hash,
         sum(protocol_fee_amount) as protocol_fee_amount,
         sum(network_fee_amount) as network_fee_amount
     from trade_data
     group by 
         auction_id,
+        environment,
         tx_hash
 ),
 
@@ -54,6 +56,8 @@ data_per_solution as (
         sender_rewards_all sra 
     on 
         r.auction_id = sra.auction_id
+    and
+        r.environment = sra.environment        
     and 
         r.tx_hash = sra.tx_hash
     left join 
