@@ -10,13 +10,13 @@ with
 
 source as (
     select 
-        updated_at, 
+        nullif(replace(replace(updated_at::text, '"', ''), '\', ''), 'null')::timestamp as updated_at,
         address,
         environment, 
         "name", 
         active
     from
-        {{ source('dune_data', 'cow_protocol_ethereum_solvers')}}
+        {{ source('dune_data', 'dune_data__cow_protocol_ethereum_solvers')}}
 )
 
 select * from source

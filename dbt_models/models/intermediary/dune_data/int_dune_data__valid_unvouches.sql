@@ -9,7 +9,7 @@ with bonding_pool as (
 
 invalidate_vouches as (
     select *
-    from {{ref('stg_dune_data__invalidate_vouch')}}
+    from {{ref('stg_dune_data__cow_protocol_ethereum_invalidated_vouches')}}
 ),
 
 valid_unvouches as (

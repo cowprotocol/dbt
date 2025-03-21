@@ -6,24 +6,31 @@ sources:
     description: >
       this is a temporary source that needs to be replaced by the actual dune extract and load job we will be doing. 
     tables:
-      - name: VouchRegister_evt_Vouch
+      - name: dune_data__cow_protocol_ethereum_vouches
         description: >
           This come frome the dune table cow_protocol_ethereum.VouchRegister_evt_Vouch
           We only vouch if a new solver joins (say, every few weeks) or when solvers change their reward target address (happens less often).
           This table is not uploaded by us. Instead, it is indexed directly from the blockchain by Dune.
+          Dune query id: 4871726
         columns:
           - name: updated_at
-            description: date of the insertion of the row inside of the Analytics databse. Is used for the incremental models.
-      - name: VouchRegister_evt_InvalidateVouch
+            description: timestamp of the insertion of the row inside of the Analytics databse. Is used for the incremental models.
+      - name: dune_data__cow_protocol_ethereum_invalidated_vouches
         description: >
           This come frome the dune table cow_protocol_ethereum.VouchRegister_evt_InvalidateVouch
-      - name: cow_protocol_ethereum_solvers
-        description: all of the table cow_protocol_ethereum.solvers
+          Dune query id: 4871740
+        columns:
+          - name: updated_at
+            description: timestamp of the insertion of the row inside of the Analytics databse. Is used for the incremental models.
+      - name: dune_data__cow_protocol_ethereum_solvers
+        description: >
+            all of the table cow_protocol_ethereum.solvers
+            Dune query id: 4345829
       - name: src_dune_solver_payments
         description: >
           The payments that have already been executed on the transactions hashes we have observed in this poc. 
           This table is only used to compare the final results of the dbt POC with the old accounting calculations.
-      - name: excluded_batches
+      - name: dune_data__cow_protocol_ethereum_excluded_batches
         description: >
           A list of transaction hashes for batches excluded from the slippage accounting due to inaccurate prices. 
           At one point this should be a seed. 
@@ -32,9 +39,11 @@ sources:
         description: >
           The already complicated logic for calculating the slippage on CoW Protocol.
           At some point this logic should be integrated in dbt but it will change.
+          Query id: 4070065
       - name: dune_data__cow_protocol_ethereum_batches
         description: >
-          Filtered on the same timestamp as raw_slippage for now because the data is too big for now.
+          Filtered on the same timestamp (from 2024-11-20 to 2024-11-25) as raw_slippage for now because the data is too big for now.
+          Query id: 4468789
       - name: dune_data__service_fee_tracker
         description: >
           The already complicated logic to flag if a solver should pay a service fee or not for the CoW Protocol based on a start and end time stamp.
@@ -44,12 +53,18 @@ sources:
           For certain solvers in the cow DAO bonding pool, after 6 months they start paying a service fee. 
           At some point maybe this logic should be changed, probably we should have a table with a list of solvers and when they entered the DAO.
           TODO for automation: review how to get the relevant data by modifying the query. Also joining after just on solver name: what if a solver changes name? 
+          Query id: 4617513
       - name : dune_data__orders_old
-        description: the old way of getting order data. Is only used to compare with our results
+        description: >
+            the old way of getting order data. Is only used to compare with our results
+            Query id: 4554206
       - name: dune_data__block_timestamp
-        description: timestamp for each block number
+        description: >
+            timestamp for each block number
+            Query id: 4599974
       - name: dune_data__converstion-rate-accounting-period-november-22
         description: >
           the cow conversion rate for thhe ethereum blockchain for a certain accounting period
           At the moment, it is only for the period we have data for (November 22)
           TODO later, for the automation we need to rethink the query, especially how to get the start time and end time of the accounting period inside of the query.
+          Query id: 4545357

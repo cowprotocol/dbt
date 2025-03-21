@@ -9,7 +9,7 @@ with
 
 source as (
     select 
-        updated_at,
+        nullif(replace(replace(updated_at::text, '"', ''), '\', ''), 'null')::timestamp as updated_at,
         contract_address,
         evt_tx_hash as tx_hash,
         evt_index as index,
@@ -19,7 +19,7 @@ source as (
         sender,
         solver
     from
-        {{ source('dune_data', 'VouchRegister_evt_InvalidateVouch')}}
+        {{ source('dune_data', 'dune_data__cow_protocol_ethereum_invalidated_vouches')}}
 )
 
 select * from source

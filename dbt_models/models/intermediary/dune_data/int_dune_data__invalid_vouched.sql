@@ -6,7 +6,7 @@ with full_bonding_pools as (
 
 vouches as (
     select *
-    from {{ref('stg_dune_data__vouch')}}
+    from {{ref('stg_dune_data__cow_protocol_ethereum_vouches')}}
 ),
 
 invalid_vouches as (

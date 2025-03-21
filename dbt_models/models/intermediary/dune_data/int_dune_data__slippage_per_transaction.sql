@@ -1,6 +1,6 @@
 with excluded_batches as (
     select *
-    from {{ref('stg_dune_data__excluded_batches')}}
+    from {{ref('stg_dune_data__cow_protocol_ethereum_excluded_batches')}}
 ),
 
 raw_slippage as (
