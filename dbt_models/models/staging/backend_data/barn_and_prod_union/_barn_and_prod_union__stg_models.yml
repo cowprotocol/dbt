@@ -18,6 +18,17 @@ models:
       TODO: check with Felix that this is the right solution: 
       Therefore, the data is deduplicated taking the prod row as a priority 
       if it exists both in prod and barn
+    columns:
+      - name: order_uid
+        description: > 
+          All the trades in the trades table should have an entry in the data per trade table.
+          TODO: change severity to error once this is integrated in thhe automated pipeline. 
+          At the moment, this test fails because we have only a subset of the data.
+        tests:
+          - relationships:
+              to: ref('fct_data_per_trade')
+              field: order_uid
+              severity: warn
   - name: stg_backend_data__competition_auctions 
   - name: stg_backend_data__proposed_solutions
     columns:
