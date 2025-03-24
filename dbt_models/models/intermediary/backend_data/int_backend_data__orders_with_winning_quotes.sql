@@ -27,7 +27,9 @@ winning_quotes as (
         true as is_eligeable_for_quote_reward,
         oq.environment
     from o
-    inner join oq on o.uid = oq.order_uid
+    inner join oq 
+        on o.uid = oq.order_uid
+        and o.environment = oq.environment
     where
         (
             o.class = 'market'
