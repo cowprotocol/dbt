@@ -55,6 +55,8 @@ data_per_trade as (
         td.order_uid = pft.order_uid 
     and
         td.auction_id = pft.auction_id  
+    and 
+        td.environment = pft.environment  
 )
 
 select 

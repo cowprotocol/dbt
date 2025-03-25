@@ -7,7 +7,7 @@ with fee_policies as (
 ranked_data as (
     select
         *,
-        row_number() over (partition by auction_id, order_uid order by application_order asc) as smallest_rank 
+        row_number() over (partition by auction_id, order_uid, environment order by application_order asc) as smallest_rank 
     from fee_policies 
 )
 

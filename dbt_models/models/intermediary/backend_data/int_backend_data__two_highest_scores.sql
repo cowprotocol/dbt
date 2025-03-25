@@ -8,8 +8,8 @@ with ranked_scores as (
         uid,
         is_winner,
         score,
-        row_number() over (partition by auction_id order by score desc) as rank,
-        max(score) over (partition by auction_id) as max_score,
+        row_number() over (partition by auction_id, environment order by score desc) as rank,
+        max(score) over (partition by auction_id, environment) as max_score,
         environment
     from
          {{ref('stg_backend_data__proposed_solutions')}}
@@ -25,7 +25,7 @@ scores_with_second_highest as (
         max_score,
         -- get the second-highest score (rank = 2)
         coalesce(
-            max(case when rank = 2 then score end) over (partition by auction_id), 0
+            max(case when rank = 2 then score end) over (partition by auction_id, environment), 0
         ) as second_highest_score,
         environment
     from
