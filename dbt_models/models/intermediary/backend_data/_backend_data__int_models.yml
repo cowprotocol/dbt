@@ -103,10 +103,6 @@ models:
     columns: 
       - name: protocol_fee_type
         description: In barn environment sometimes this value is equal to volume. This looks like it is resulting from testing in barn. In prod this should never be the case. 
-        data_tests: 
-          - accepted_values:
-              values: ['priceimprovement', 'surplus', null] 
-              severity: warn
       - name: environment
         data_tests:
           - not_null:

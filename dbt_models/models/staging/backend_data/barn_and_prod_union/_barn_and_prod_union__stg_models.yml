@@ -5,7 +5,11 @@ version: 2
 
 models:
   - name: stg_backend_data__app_data
-  - name: stg_backend_data__auction_prices
+  - name: stg_backend_data__auction_prices 
+    data_tests:
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list: ["auction_id", "token", "environment"]
+          severity: warn  
   - name: stg_backend_data__fee_policies
   - name: stg_backend_data__jit_orders
   - name: stg_backend_data__order_quotes
@@ -23,7 +27,7 @@ models:
         description: > 
           All the trades in the trades table should have an entry in the data per trade table.
           TODO: change severity to error once this is integrated in thhe automated pipeline. 
-          At the moment, this test fails because we have only a subset of the data.
+          At the moment, this test fails because we have only a subset of the data (some order uids are not in the orders or jit_orders table)
         tests:
           - relationships:
               to: ref('fct_data_per_trade')
@@ -35,6 +39,9 @@ models:
       - name: solver
         description: here we transform the solver to match the dune data
   - name: stg_backend_data__settlements
+    description: >
+      This is indexed on chain so settlements can appear both in the prod db and the barn db. 
+      This table should not be used in future models as a left outer join to avoid duplicates.
     columns:
       - name: solver
         description: here we transform the solver to match the dune data
@@ -45,5 +52,5 @@ models:
     descriptino: TODO, should we add the protocol_fee_tokens?? and if so, how to clean this column?
     data_tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
-          column_list: ["auction_id", "order_uid"]
+          column_list: ["auction_id", "order_uid", "environment"]
           severity: warn

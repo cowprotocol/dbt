@@ -12,7 +12,7 @@ source as (
         executed_fee_token
         -- todo why do we not use the protocol_fee_tokens columns from this table to identify the tokens? 
     from
-        {{ source('backend_data_aurelie', 'backend_data_prod__order_execution')}}
+        {{ source('backend_data_aurelie', 'backend_data_barn__order_execution')}}
 ),
 
 ranked_rows as (
