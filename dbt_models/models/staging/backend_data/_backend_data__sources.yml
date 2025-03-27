@@ -7,6 +7,13 @@ sources:
       This is a temporary source that needs to be replaced by the actual data dump (like for the temp_backend_db_dump schema).
       This data is temporarily under the schema aurelie because I did not have write access to the temp_backend_db_dump schema
       when doing a partial data synch from the backend db to the analytics db with dune synch v2.
+      The following tests get errors because the data is not complete and we expect the errors to dissapear once we integrate dbt to dagster (check with Felix H):
+      - Warning in test not_null_int_backend_data__settlements_in_time_environment (models/intermediary/backend_data/_backend_data__int_models.yml). Got 9 results, configured to warn if != 0
+      - Warning in test not_null_int_backend_data__reward_calculation_environment (models/intermediary/backend_data/_backend_data__int_models.yml). Got 9 results, configured to warn if != 0
+      - Warning in test not_null_int_backend_data__price_data_network_fee_token_native_price (models/intermediary/backend_data/_backend_data__int_models.yml). Got 1 result, configured to warn if != 0
+      - Warning in test not_null_int_backend_data__price_data_surplus_token_native_price (models/intermediary/backend_data/_backend_data__int_models.yml). Got 1 result, configured to warn if != 0
+      - Warning in test dbt_expectations_expect_column_values_to_not_be_null_fct_data_per_trade_protocol_fee_price (models/marts/_models.yml). Got 1 result, configured to warn if != 0 
+      -  Warning in test relationships_stg_backend_data__trades_order_uid__order_uid__ref_fct_data_per_trade_ (models/staging/backend_data/barn_and_prod_union/_barn_and_prod_union__stg_models.yml). Got 28 results, configured to warn if != 0
     tables:
       - name: backend_data_prod__trades
         description: Contains the different trades for each block

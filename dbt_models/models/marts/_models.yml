@@ -100,3 +100,4 @@ models:
     description: >
       The actual transfers in cow and native token per solver per accounting period.
       There can be up to two transfers per solver (one in cow and one in the native token)
+      
